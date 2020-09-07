@@ -7,17 +7,19 @@ import Navbar from './Navbar';
 import ContentPage from './ContentPage';
 import ProfilePage from './ProfilePage';
 
+import {fakeProfile, fakeContent} from './TestData';
+
 function App() {
   return (
     <React.Fragment>
       <Navbar />
       <Switch>
         <Route path="/content">
-          <ContentPage />
+          <ContentPage {...fakeContent}/>
         </Route>
 
         <Route path="/">
-          <ProfilePage />
+          <ProfilePage {...fakeProfile}/>
         </Route>
       </Switch>
       

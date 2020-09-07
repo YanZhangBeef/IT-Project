@@ -8,10 +8,3 @@
     font-size: 1.1rem;
     line-height: 2.7rem;
 }
-
-
-@media (min-width: 1200px) {
-    #special {
-      max-width: 960px;
-    }
-  }
