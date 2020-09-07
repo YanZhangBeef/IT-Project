@@ -1,0 +1,17 @@
+.content-image {
+    height: 400px;
+    width: 900px;
+    object-fit: cover;
+}
+
+.content-text {
+    font-size: 1.1rem;
+    line-height: 2.7rem;
+}
+
+
+@media (min-width: 1200px) {
+    #special {
+      max-width: 960px;
+    }
+  }
