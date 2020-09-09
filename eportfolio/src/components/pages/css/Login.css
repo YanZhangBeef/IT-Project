@@ -1,0 +1,33 @@
+.login-container {
+  display: flex;
+  top: 50%;
+  left: 50%;
+}
+
+.login {
+  flex: 1;
+}
+
+.logo {
+  flex: 1;
+  background: #c4c4c4;
+}
+
+.header {
+  display: flex;
+}
+
+.login-page {
+  flex: 1;
+}
+.signup-page {
+  flex: 1;
+}
+
+.user-check {
+  display: flex;
+}
+
+.form-check {
+  flex: 1;
+}

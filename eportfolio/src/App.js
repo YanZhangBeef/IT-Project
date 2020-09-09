@@ -1,28 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import {Switch, Route, useHistory} from 'react-router-dom';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import { Switch, Route, Router } from "react-router-dom";
+import "./App.css";
 
-import Navbar from './Navbar';
-import ContentPage from './ContentPage';
-import ProfilePage from './ProfilePage';
+import Navbar from "./Navbar";
+import ContentPage from "./ContentPage";
+import ProfilePage from "./ProfilePage";
+import Login from "./components/pages/Login";
 
-import {fakeProfile, fakeContent} from './TestData';
+import { fakeProfile, fakeContent } from "./TestData";
 
 function App() {
   return (
     <React.Fragment>
       <Navbar />
+
       <Switch>
-        <Route path="/content">
-          <ContentPage {...fakeContent}/>
+        <Route exact path="/content">
+          <ContentPage {...fakeContent} />
         </Route>
 
-        <Route path="/">
-          <ProfilePage {...fakeProfile}/>
+        <Route exact path="/">
+          <ProfilePage {...fakeProfile} />
         </Route>
+        <Route exact path="/login" component={Login} />
       </Switch>
-      
     </React.Fragment>
   );
 }
