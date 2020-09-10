@@ -6,7 +6,7 @@ import './App.css';
 import Navbar from './Navbar';
 import ContentPage from './ContentPage';
 import ProfilePage from './ProfilePage';
-
+import SearchPage from './SearchPage/SearchPage';
 import {fakeProfile, fakeContent} from './TestData';
 
 function App() {
@@ -18,8 +18,11 @@ function App() {
           <ContentPage {...fakeContent}/>
         </Route>
 
-        <Route path="/">
+        <Route exact path="/">
           <ProfilePage {...fakeProfile}/>
+        </Route>
+        <Route path ="/search">
+          <SearchPage />
         </Route>
       </Switch>
       
