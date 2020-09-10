@@ -1,12 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
-import { Switch, Route, Router } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./Navbar";
 import ContentPage from "./ContentPage";
 import ProfilePage from "./ProfilePage";
 import Login from "./components/pages/Login";
+import Home from "./components/pages/Home";
 
 import { fakeProfile, fakeContent } from "./TestData";
 
@@ -24,6 +24,7 @@ function App() {
           <ProfilePage {...fakeProfile} />
         </Route>
         <Route exact path="/login" component={Login} />
+        <Route exact path="/home" component={Home} />
       </Switch>
     </React.Fragment>
   );

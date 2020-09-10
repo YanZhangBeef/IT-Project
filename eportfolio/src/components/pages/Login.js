@@ -1,96 +1,50 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import "./css/Login.css";
+import { Redirect } from "react-router-dom";
+firebase.initializeApp({
+  apiKey: "AIzaSyB6-XzH_OqNcW5RMiD4iiZqSyQev22HIyw",
+  authDomain: "eportfolio-5head.firebaseapp.com",
+});
 
 const Login = (props) => {
-  const [user, setUser] = useState({ email: "", password: "" });
-
-  const onChange = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
+  const [state, setState] = useState({ authenticated: false });
+  let uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.GithubAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccess: () => false,
+    },
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (user.email.trim() === "" || user.password.trim() === "") {
-      return;
-    }
-    console.log(`email:${user.email} password:${user.password}`);
-    setUser({ email: "", password: "" });
-  };
-
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      setState({ authenticated: !!user });
+    });
+  }, [state.authenticated]);
   return (
-    <div className="container my-5">
-      <div className="login-container shadow self-align-center">
-        <div className="login">
-          <div className="btn-group" role="group" aria-label="Basic example">
-            <button type="button" className="btn btn-secondary">
-              Login
-            </button>
-            <button type="button" className="btn btn-secondary">
-              Signup
-            </button>
+    <div className="container">
+      {state.authenticated ? (
+        <Redirect to="/home" />
+      ) : (
+        <div className="login shadow">
+          <div className="login-method">
+            <div className="header">
+              <h2>Log In</h2>
+            </div>
+            <StyledFirebaseAuth
+              uiConfig={uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
           </div>
-          <div className="col">
-            <h1>Login Page</h1>
-            <hr />
-            <form onSubmit={onSubmit}>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  placeholder="Enter email"
-                  value={user.email}
-                  onChange={onChange}
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="password"
-                  placeholder="Enter password"
-                  value={user.password}
-                  onChange={onChange}
-                />
-              </div>
-              <div className="forgot-pass">
-                <Link to="/restPassword">Forgot Password?</Link>
-              </div>
-              <div className="user-check">
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                  />
-                  <label class="form-check-label" for="inlineRadio1">
-                    Employer
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label class="form-check-label" for="inlineRadio2">
-                    Student
-                  </label>
-                </div>
-              </div>
-              <button className="btn btn-success" type="Submit">
-                Login
-              </button>
-            </form>
-          </div>
+          <div className="icon"></div>
         </div>
-        <div className="logo"></div>
-      </div>
+      )}
     </div>
   );
 };
