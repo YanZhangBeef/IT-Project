@@ -1,0 +1,16 @@
+.login {
+  display: flex;
+}
+
+.login-method {
+  flex: 1;
+}
+
+.icon {
+  flex: 1;
+  background: #c4c4c4;
+}
+
+.header {
+  text-align: center;
+}
