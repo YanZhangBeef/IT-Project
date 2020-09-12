@@ -1,16 +1,23 @@
+.login-container {
+  margin: auto;
+  width: 70%;
+  height: 100%;
+}
+
 .login {
   display: flex;
+  margin: 20%;
 }
 
 .login-method {
   flex: 1;
 }
 
-.icon {
+.app-icon {
   flex: 1;
   background: #c4c4c4;
 }
 
-.header {
+.login-header {
   text-align: center;
 }
