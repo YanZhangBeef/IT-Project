@@ -12,8 +12,8 @@
 .image {
   position:absolute;
   width: 30%;
-  height: 70%;
-  top: 14%;
+  height: 60%;
+  top: 19%;
   left: 5%;
   vertical-align: middle;
   background: #c4c4c4;
@@ -21,45 +21,55 @@
 
 .Title {
   position: absolute;
-  left: 45%;
+  left: 43%;
   top: 10%;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 125%;
   line-height: 42px;
-
   color: #000000;
 }
 
 .content-box {
   position: absolute;
-  top: 23%;
-  left: 45%;
+  top: 28%;
+  left: 43%;
+  
   width: 50%;
-  text-align: left;
+  text-align: justify;
 }
 
 .content-text {
   position: absolute;
+  
   font-size: 100%;
 }
 
 .icons-comment {
   position: absolute;
-  top: 74%;
-  left: 45%;
-  font-size: 100%;
+  top: 76%;
+  left: 43%;
+  font-size: 120%;
 }
 
 .icons-video {
   position: absolute;
-  top: 74%;
-  left: 52%;
-  font-size: 100%;
+  top: 76%;
+  left: 50%;
+  font-size: 120%;
 }
 
 .p2 {
   top: 20%;
 }
 
+.button {
+  position: relative;
+  height: 15%;
+  left: 85%;
+  top: 76%;
+  background-color: #6C95FF;
+  font-size: 90%;
+  color: white;
+}

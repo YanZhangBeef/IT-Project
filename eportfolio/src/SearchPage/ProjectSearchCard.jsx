@@ -23,6 +23,7 @@ const searchBox = () => (
     <div className="icons-video">
       <p>{video} 1</p>
     </div>
+    <button className = "button" type = "button">Message</button>
   </div>
 );
 
