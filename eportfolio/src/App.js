@@ -7,6 +7,7 @@ import ContentPage from "./ContentPage";
 import ProfilePage from "./ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
+import Chat from "./components/Chat/chat";
 
 import { fakeProfile, fakeContent } from "./TestData";
 
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/">
           <ProfilePage {...fakeProfile} />
         </Route>
+        <Route exact path="/chat" component={Chat} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
       </Switch>

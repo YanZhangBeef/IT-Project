@@ -36,7 +36,7 @@ export default function Chat(props) {
         <div className={classes.chatScreen}>
            
           <ChatScreen person={selected} />
-          <SendText/>
+          {/* <SendText/> */}
           
           
         </div>
