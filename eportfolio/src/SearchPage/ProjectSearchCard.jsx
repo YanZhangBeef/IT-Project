@@ -2,9 +2,10 @@ import React from "react";
 
 import "./ProjectSearchCardStyles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faVideo } from "@fortawesome/free-solid-svg-icons";
+import { faComment, faVideo, faPaperclip } from "@fortawesome/free-solid-svg-icons";
 const comment = <FontAwesomeIcon icon={faComment} />;
 const video = <FontAwesomeIcon icon={faVideo} />;
+const paperclip = <FontAwesomeIcon icon={faPaperclip}/>;
 
 const searchBox = () => (
   <div className="item">
@@ -22,6 +23,9 @@ const searchBox = () => (
     </div>
     <div className="icons-video">
       <p>{video} 1</p>
+    </div>
+    <div className="icons-paperclip">
+      <p>{paperclip} 3</p>
     </div>
     <button className = "button" type = "button">Message</button>
   </div>
