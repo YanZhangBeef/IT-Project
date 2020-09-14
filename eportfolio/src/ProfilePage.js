@@ -7,9 +7,9 @@ import SectionCard from './components/SectionCard';
 
 export default function ProfilePage(props) {
     return (
-        <div class="container my-5">
+        <div className="container my-5">
 
-            <ProfileCard {...props.profile} />
+            <ProfileCard {...props} />
             {
                 props.sections.map(section => 
                     <SectionCard key={section.sectionId} {...section} />
