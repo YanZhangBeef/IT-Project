@@ -1,10 +1,8 @@
 import React from "react";
 
 import "./PeopleSearchCardStyles.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faVideo } from "@fortawesome/free-solid-svg-icons";
-const comment = <FontAwesomeIcon icon={faComment} />;
-const video = <FontAwesomeIcon icon={faVideo} />;
+
+
 
 const searchBox = () => (
   <div className="item">
