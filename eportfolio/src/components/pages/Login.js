@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import "./css/Login.css";
 import { Redirect } from "react-router-dom";
@@ -9,7 +10,7 @@ firebase.initializeApp({
 });
 
 const Login = (props) => {
-  const [state, setState] = useState({ authenticated: false });
+  const [user, setUser] = useState(null);
   let uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -18,23 +19,27 @@ const Login = (props) => {
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccess: () => false,
+      signInSuccessWithAuthResult: () => false,
     },
   };
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      setState({ authenticated: !!user });
+    const unlisten = firebase.auth().onAuthStateChanged((user) => {
+      user ? setUser(user) : setUser(null);
+      console.log(user);
     });
-  }, [state.authenticated]);
+    return () => {
+      unlisten();
+    };
+  }, []);
   return (
-    <div className="container">
-      {state.authenticated ? (
+    <div className="login-container">
+      {user ? (
         <Redirect to="/home" />
       ) : (
         <div className="login shadow">
           <div className="login-method">
-            <div className="header">
+            <div className="login-header">
               <h2>Log In</h2>
             </div>
             <StyledFirebaseAuth
@@ -42,7 +47,7 @@ const Login = (props) => {
               firebaseAuth={firebase.auth()}
             />
           </div>
-          <div className="icon"></div>
+          <div className="app-icon"></div>
         </div>
       )}
     </div>
