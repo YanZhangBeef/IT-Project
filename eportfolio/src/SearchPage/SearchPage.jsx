@@ -4,7 +4,7 @@ import PeopleResults from "./PeopleResults";
 import "./Search.css";
 
 const search = () => (
-  <div class="container">
+  <div class="search-container">
     <h1>Projects</h1>
     
     <ProjectResults />

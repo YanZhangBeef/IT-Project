@@ -18,16 +18,16 @@ const searchBox = () => (
         Neque viverra justo nec ultrices. Penatibus et magnis dis parturient montes nascetur...
       </p>
     </div>
-    <div className="icons-comment">
+    <div className="search-icons-comment">
       <p>{comment} 1</p>
     </div>
-    <div className="icons-video">
+    <div className="search-icons-video">
       <p>{video} 1</p>
     </div>
-    <div className="icons-paperclip">
+    <div className="search-icons-paperclip">
       <p>{paperclip} 3</p>
     </div>
-    <button className = "button" type = "button">Message</button>
+    <button className = "search-button" type = "button">Message</button>
   </div>
 );
 

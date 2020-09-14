@@ -46,32 +46,29 @@
   font-size: 100%;
 }
 
-.icons-comment {
+.search-icons-comment {
   position: absolute;
   top: 76%;
   left: 43%;
   font-size: 120%;
 }
 
-.icons-video {
+.search-icons-video {
   position: absolute;
   top: 76%;
   left: 50%;
   font-size: 120%;
 }
 
-.icons-paperclip {
+.search-icons-paperclip {
   position: absolute;
   top: 76%;
   left: 57%;
   font-size: 120%;
 }
 
-.p2 {
-  top: 20%;
-}
 
-.button {
+.search-button {
   position: relative;
   height: 15%;
   left: 85%;
