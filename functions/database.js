@@ -18,10 +18,6 @@ const populateDummyData = async () => {
     }
 };
 
-const clearDatabase = async () => {
-
-}
-
 const dummyUser = {
     displayName: "John Smith",
     profileImg: "",
@@ -43,5 +39,4 @@ const dummyContent = {
 
 
 exports.populateDummyData = populateDummyData;
-exports.clearDatabase = clearDatabase;
 
