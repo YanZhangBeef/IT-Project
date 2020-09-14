@@ -6,7 +6,8 @@ export default function Navbar(props) {
   return (
     <nav className="app-nav navbar py-4 border-bottom shadow-sm">
       <span>ePortfolio</span>
-      <Link to="/login">Login</Link>
+      <Link className="link" to="/login">Login</Link>
+      <Link className="link" to="/chat">Inbox</Link>
     </nav>
   );
 }
