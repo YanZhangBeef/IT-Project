@@ -6,7 +6,9 @@ import "./App.css";
 import Navbar from './Navbar';
 import ContentPage from './ContentPage';
 import ProfilePage from './ProfilePage';
-import SearchPage from './SearchPage/SearchPage';
+import SearchPage from './components/pages/SearchPage/SearchPage';
+import Login from './components/pages/Login';
+import Home from './components/pages/Home';
 import {fakeProfile, fakeContent} from './TestData';
 
 
