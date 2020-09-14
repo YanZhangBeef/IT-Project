@@ -8,8 +8,6 @@ function sideChatBar(props){
    
     return(
         <div>
-            
-
             <ChatIndividual name={props.person} getName={props.getName}/>
           
         </div>
