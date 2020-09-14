@@ -9,7 +9,7 @@
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 960px!important;
+    max-width: 960px !important;
   }
 }
 
@@ -35,4 +35,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
 }
