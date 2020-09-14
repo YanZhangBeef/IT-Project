@@ -5,8 +5,8 @@
     
     margin: auto;
     margin-top: 3%;
-    width: 55%;
-    
+    width: 50rem;
+   
     
   }
 
@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content:  space-around;
     height: 40rem;
-
+    
   }
   
   .cp-1 {
