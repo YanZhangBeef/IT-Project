@@ -120,13 +120,13 @@ let openedChat= "John Smith"
 
 
   return (
-    <div>
+    <div className={classes.container} >
       
       <ChatScreenHeading name={props.person ? props.person : openedChat }/>
       
       
       
-      
+      <div className={classes.scroll}>
       {convo.map(message =>{
             
            
@@ -139,6 +139,7 @@ let openedChat= "John Smith"
             />)
 
     })}
+    </div>
 
     <div className={classes.textBox}>
       <SendText getText={(event) => sendTextHandler(event)}/> 

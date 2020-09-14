@@ -17,10 +17,14 @@ export default function SendText(props){
 
     }
     return(
-        <div>
+        <div >
             <form onSubmit={props.getText}>
-            <input className={classes.textBox} type="text" onChange={(event) => {newText(event)}}/>
-            <FontAwesomeIcon icon={faPaperPlane} />
+                <div className={classes.textBox} >
+                <input  type="text" onChange={(event) => {newText(event)}}/>
+                <FontAwesomeIcon icon={faPaperPlane} />
+
+                </div>
+           
             
             </form>
 

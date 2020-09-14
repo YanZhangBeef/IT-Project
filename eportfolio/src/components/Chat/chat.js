@@ -5,7 +5,7 @@ import ChatScreen from '../chatScreen/chatScreen';
 import classes from './chat.module.css';
 
 import SendText from '../sendText/sendText';
-
+import ChatScreenHeading from "../chatScreenHeading/chatScreenHeading";
 export default function Chat(props) {
     const [selected, setSelected] = useState('');
 
@@ -23,7 +23,9 @@ export default function Chat(props) {
             
         
       <div className={classes.chat}>
+      
         <div className={classes.sideChatBar}>
+        <ChatScreenHeading name="*User Name*"/>
         
           {people.map(person =>{
               return(
