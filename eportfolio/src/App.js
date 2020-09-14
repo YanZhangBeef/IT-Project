@@ -10,7 +10,7 @@ import SearchPage from './components/pages/SearchPage/SearchPage';
 import Login from './components/pages/Login';
 import Home from './components/pages/Home';
 import {fakeProfile, fakeContent} from './TestData';
-
+import Chat from "./components/Chat/chat";
 
 
 
@@ -28,6 +28,7 @@ function App() {
 
           <ProfilePage {...fakeProfile}/>
         </Route>
+        <Route exact path="/chat" component={Chat} />
         <Route path ="/search">
           <SearchPage />
         </Route>
