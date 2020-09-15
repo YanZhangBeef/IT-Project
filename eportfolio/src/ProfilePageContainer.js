@@ -14,6 +14,9 @@ export default function ProfilePageContainer(props) {
     }, [userId]);
 
     return (
-        <ProfilePage {...profileData} isEditable={true} updateProfile={(data) => updateProfile(userId, data)}/>
+        <ProfilePage {...profileData} isEditable={true} updateProfile={(data) => {
+            updateProfile(userId, data);
+            setProfileData(Object.assign({}, profileData, data));
+        }}/>
     )
 }
