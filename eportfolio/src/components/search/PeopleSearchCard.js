@@ -17,7 +17,7 @@ const searchBox = () => (
       More
     </button>
 
-    <hr className="horizontal"></hr>
+    <hr className="hline"></hr>
     <div className="about">
       <p> I am a student at the university of Melbourne </p>
     </div>

@@ -30,7 +30,7 @@
   font-size: 100%;
 }
 
-hr {
+.hline {
   width: 300px;
   position: relative;
   top: 45%;
