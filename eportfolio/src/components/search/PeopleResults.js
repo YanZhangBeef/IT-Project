@@ -1,14 +1,12 @@
 import React from "react";
-import SearchCard from "./PeopleSearchCard";
+
+import ProfileCard from "../profile/ProfileCard";
+import { fakeProfile } from "../../TestData";
 
 const peopleCard = () => (
-  <div className="flex-container">
-    <div className="cp-1">
-      <SearchCard />
-    </div>
-    <div className="cp-2">
-      <SearchCard />
-    </div>
+  <div>
+    <ProfileCard {...fakeProfile.profile} />
+    <ProfileCard {...fakeProfile.profile} />
   </div>
 );
 
