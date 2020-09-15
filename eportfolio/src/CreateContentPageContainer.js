@@ -27,6 +27,7 @@ export default function CreateContentPageContainer(props) {
     }, [userId]);
 
     return (
-        <EditContentPage {...profileData} handleSave={handleSave} handleCancel={handleCancel} isNewPage={true}/>    
+        <EditContentPage {...profileData} title="Untitled Post" description=""
+            handleSave={handleSave} handleCancel={handleCancel} isNewPage={true}/>    
     )
 }
