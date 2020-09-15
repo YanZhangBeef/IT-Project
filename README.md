@@ -24,7 +24,7 @@ We have been having issues with quality control so please follow the following g
 - Follow the folder structure that has been setup, refrain from adding new folders unless absolutely necessary
 - Pages go in the pages folder. Helper components for the pages go in their respective components folder.
 - All react js files should be uppercase.
-- use jsx instead of js
+- use js instead of jsx
 
 ### CSS
 - we will use css modules https://programmingwithmosh.com/react/css-modules-react/ to resolve the css conflicts issue
