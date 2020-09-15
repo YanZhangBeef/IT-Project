@@ -9,9 +9,9 @@ const populateDummyData = async () => {
     const contentRef = db.collection("sectionContents").doc("dummy-content");
 
     try {
-        await userRef.set(Object.assign({}, dummyUser, {sections: [sectionRef]} ));
-        await sectionRef.set(Object.assign({}, dummySection, {userRef: userRef, contents: [contentRef]}));
-        await contentRef.set(Object.assign({}, dummyContent, { userRef: userRef, sectionRef: sectionRef}));
+        await userRef.set(Object.assign({}, dummyUser, {sections: [sectionRef.id]} ));
+        await sectionRef.set(Object.assign({}, dummySection, {userId: userRef.id, contents: [contentRef.id]}));
+        await contentRef.set(Object.assign({}, dummyContent, { userId: userRef.id, sectionId: sectionRef.id}));
     }
     catch (e) {
         console.log(e);

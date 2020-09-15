@@ -8,10 +8,12 @@ export async function fetchContent(contentId) {
     try {
         const content = await db.collection("sectionContents").doc(contentId).get();
         const contentData = content.data();
-        const user = await contentData.userRef.get();
+        const userId = contentData.userId;
+
+        const user = await db.collection("users").doc(userId).get();
         const userData = user.data();
 
-        return Object.assign({}, contentData, userData, {contentId: content.id, userId: user.id});
+        return Object.assign({}, contentData, userData, {contentId: content.id, userId: userId});
     }
     catch(e) {
         console.log(e);
@@ -32,15 +34,12 @@ export async function fetchProfile(userId) {
 }
 
 
-async function fetchSectionHelper(sectionRef){
-    const sections = await sectionRef.get();
-    console.log(sections.data());
-    const contents = await Promise.all(sections.data().contents.map(async contentRef => {
-        const content = await contentRef.get();
-        return Object.assign({}, content.data(), {contentId: contentRef.id});
-    }));
+async function fetchSectionHelper(sectionId){
+    const section = await db.collection("sections").doc(sectionId).get();
+    console.log(section.data());
+    const contents = await Promise.all(section.data().contents.map(fetchContent));
 
-    return Object.assign({}, sections.data(), {contents: contents, sectionId: sectionRef.id, userId: sections.data().userRef.id});
+    return Object.assign({}, section.data(), {contents: contents, sectionId: sectionId});
 }
 
 export async function updateProfile(userId, profileData) {
@@ -67,15 +66,15 @@ export async function deleteContent(contentId) {
     try {
         const contentRef = db.collection('sectionContents').doc(contentId);
         const content = await contentRef.get();
-        const sectionRef = content.data().sectionRef;
+        const sectionRef = db.collection('sections').doc(content.data().sectionId);
 
         const batch = db.batch();
         batch.delete(contentRef);
         batch.update(sectionRef, {
-            contents: firebase.firestore.FieldValue.arrayRemove(contentRef)
+            contents: firebase.firestore.FieldValue.arrayRemove(contentId)
         })
         await batch.commit();
-        return content.data().userRef.id;
+        return content.data().userId;
     }
     catch(e) {
         console.error("Error deleting content", e);
@@ -87,16 +86,15 @@ export async function createContent(userId, sectionId, contentData) {
         const generatedContentId = uuidv4();
         const batch = db.batch();
         const contentRef = db.collection('sectionContents').doc(generatedContentId);
-        const userRef = db.collection('users').doc(userId);
         const sectionRef = db.collection('sections').doc(sectionId);
 
-        batch.set(contentRef, {...contentData, userId, sectionId, userRef, sectionRef});
+        batch.set(contentRef, {...contentData, userId, sectionId});
         batch.update(sectionRef, {
-            contents: firebase.firestore.FieldValue.arrayUnion(contentRef)
+            contents: firebase.firestore.FieldValue.arrayUnion(generatedContentId)
         });
         
         await batch.commit();
-        return contentRef.id;            
+        return generatedContentId;            
     }
     catch(e) {
         console.error("Error creating content", e);
