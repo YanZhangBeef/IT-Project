@@ -1,6 +1,8 @@
 import React from 'react';
-
 import './ProfileCard.css';
+
+import {EditableTextArea, EditableTextField} from './EditableTextArea';
+
 export default function ProfileCard(props) {
     return (
         <div className="section-card shadow p-4 mt-5">
@@ -10,7 +12,7 @@ export default function ProfileCard(props) {
                     </div>
                     <div className="profile-content">
                         <h1 className="profile-name">{props.displayName}</h1>
-                        <span className="profile-tagline">{props.tagline}</span>
+                        <EditableTextField isEditable={props.isEditable} text={props.tagline} handleSave={tagline => props.updateProfile({tagline})}/>
                     </div>
 
                     <div className="profile-message ml-auto">
@@ -20,7 +22,8 @@ export default function ProfileCard(props) {
                     
                 </div>
                 <hr/>
-                <p>{props.about}</p>
+                <EditableTextArea isEditable={props.isEditable} text={props.about} handleSave={about => props.updateProfile({about})}/>
+                
 
             </div>
     )

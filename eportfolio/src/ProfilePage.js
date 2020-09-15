@@ -12,7 +12,7 @@ export default function ProfilePage(props) {
             <ProfileCard {...props} />
             {
                 props.sections.map(section => 
-                    <SectionCard key={section.sectionId} {...section} />
+                    <SectionCard key={section.sectionId} {...section} isEditable={props.isEditable}/>
                 )
             }
             

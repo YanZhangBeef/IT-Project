@@ -1,12 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './ContentPage.css';
 
 export default function ContentPage(props) {
     return (
         <div id ="special" className="container mt-4">
-            <div className="row m-1">
+            <div className="d-flex m-1 align-items-center">
                 <h1>{props.title}</h1>
+                { props.isEditable && 
+                    <Link to={`/editContent/${props.contentId}`} className="ml-auto">
+                        <button className="btn btn-primary">Edit</button>
+                    </Link> }
             </div>
             <div className="row m-1 mb-3">
                 <span>{props.displayName}</span>
