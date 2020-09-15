@@ -1,0 +1,13 @@
+.textBox {
+  width: 60rem;
+  position: fixed;
+  bottom: 5px;
+}
+
+.textBox Input {
+  width: 90%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
