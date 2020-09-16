@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import "./ContentPage.css";
+import styles from "./ContentPage.module.css";
 
 export default function EditContentPage(props) {
   const [title, setTitle] = useState("");
@@ -17,7 +17,7 @@ export default function EditContentPage(props) {
       <div className="d-flex m-1 mb-3 align-items-center">
         <input
           type="text"
-          className="form-control edit-title"
+          className={`form-control ${styles["edit-title"]}`}
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -44,12 +44,12 @@ export default function EditContentPage(props) {
       </div>
 
       <img
-        className="content-image m-1"
+        className={`${styles["content-image"]} m-1`}
         src="https://images.unsplash.com/photo-1563805042-7684c019e1cb"
       />
 
       <textarea
-        className="form-control edit-content-text content-text m-1 my-5"
+        className={`form-control ${styles["edit-content-text"]} ${styles["content-text"]} m-1 my-5`}
         placeholder="Enter text here..."
         value={description}
         onChange={(e) => setDescription(e.target.value)}

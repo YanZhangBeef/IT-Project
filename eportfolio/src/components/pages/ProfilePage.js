@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./ProfilePage.css";
 import ProfileCard from "../profile/ProfileCard";
 import SectionCard from "../profile/SectionCard";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./ContentPage.css";
+import styles from "./ContentPage.module.css";
 
 export default function ContentPage(props) {
   return (
@@ -19,10 +19,12 @@ export default function ContentPage(props) {
       </div>
 
       <img
-        className="content-image m-1"
+        className={`${styles["content-image"]} m-1`}
         src="https://images.unsplash.com/photo-1563805042-7684c019e1cb"
       />
-      <p className="content-text m-1 my-5">{props.description}</p>
+      <p className={`${styles["content-text"]} m-1 my-5`}>
+        {props.description}
+      </p>
       <h2 className="m-1">Artefacts</h2>
       <div className="m-1 my-5">Nothing to see here</div>
       <h2 className="m-1">Comments</h2>
