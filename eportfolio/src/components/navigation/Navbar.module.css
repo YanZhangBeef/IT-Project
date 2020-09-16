@@ -7,3 +7,16 @@
 .link {
   color: #efefef;
 }
+
+.searchContainer{
+  margin-left:10rem;
+}
+.navbaricon{
+  display: flex;
+}
+
+.icon{
+  margin-top:7%;
+  list-style:none;
+  margin-right: 1.25rem;
+}
