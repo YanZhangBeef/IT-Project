@@ -1,23 +1,21 @@
 import React from "react";
 import ProjectResults from "../search/ProjectResults";
 import PeopleResults from "../search/PeopleResults";
-import "./SearchPage.css";
+import classes from "./Search.module.css";
 
-const search = () => (
-  <div class="container">
-    <h1>People</h1>
-
+const search = (props) => (
+  <div class="container my-3">
+    <h1 className={`${classes.title} mt-5`}>People</h1>
     <PeopleResults />
-    <div className="more mt-3">
+    <div className={`${classes.more} mt-4`}>
       <p>Load more projects</p>
-      <hr></hr>
+      <hr className="mt-2"></hr>
     </div>
-    <h1>Projects</h1>
-
-    <ProjectResults />
-    <div className="more">
+    <h1 className={`${classes.title} mt-5`}>Projects and experience</h1>
+    <ProjectResults data={props} />
+    <div className={`${classes.more} mt-4`}>
       <p>Load more people</p>
-      <hr></hr>
+      <hr className="mt-2"></hr>
     </div>
   </div>
 );

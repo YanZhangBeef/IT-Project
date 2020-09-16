@@ -26,7 +26,7 @@ function App() {
         </Route>
         <Route exact path="/chat" component={Chat} />
         <Route path="/search">
-          <SearchPage />
+          <SearchPage {...fakeProfile} />
         </Route>
 
         <Route exact path="/login" component={Login} />

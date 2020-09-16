@@ -1,41 +1,50 @@
 import React from "react";
-
-import "./ProjectSearchCardStyles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faComment,
-  faVideo,
   faPaperclip,
+  faVideo,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
-const comment = <FontAwesomeIcon icon={faComment} />;
-const video = <FontAwesomeIcon icon={faVideo} />;
-const paperclip = <FontAwesomeIcon icon={faPaperclip} />;
 
-const searchBox = () => (
-  <div className="item">
-    <div className="image"></div>
+import classes from "./ProjectSearchCard.module.css";
 
-    <h1 className="Title">Automated robbot project </h1>
-    <div className="content-box">
-      <p className="content-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Neque viverra justo
-        nec ultrices. Penatibus et magnis dis parturient montes nascetur...
-      </p>
-    </div>
-    <div className="search-icons-comment">
-      <p>{comment} 1</p>
-    </div>
-    <div className="search-icons-video">
-      <p>{video} 1</p>
-    </div>
-    <div className="search-icons-paperclip">
-      <p>{paperclip} 3</p>
-    </div>
-    <button className="search-button" type="button">
-      Message
-    </button>
-  </div>
-);
+export default function ProjectSearchCard(props) {
+  return (
+    <div className="section-card shadow p-4 mt-5">
+      <h5>{props.title}</h5>
 
-export default searchBox;
+      {props.content
+        .filter((item, idx) => idx < 1)
+        .map((item, index) => [
+          index !== 0 ? <hr /> : null,
+
+          <div key={item.contentId} className={`${classes.section} my-4`}>
+            <div className={`${classes.sectionImage} mr-4`}></div>
+            <div className={classes.sectionContent}>
+              <h5>{item.title}</h5>
+              <p className={classes.sectionDescription}>{item.description}</p>
+              <div className={`${classes.sectionFooter} mx-2`}>
+                <div className={classes.sectionIcons}>
+                  <span className="mx-1">
+                    <FontAwesomeIcon icon={faPaperclip} /> 2
+                  </span>
+                  <span className="mx-1 ml-2">
+                    <FontAwesomeIcon icon={faVideo} /> 1
+                  </span>
+                  <span className="mx-1">
+                    <FontAwesomeIcon icon={faComment} /> 3
+                  </span>
+                </div>
+
+                <div className={classes.sectionButtons}>
+                  <button className="btn btn-primary">More</button>
+                  <span className="mx-1"></span>
+                  <button className="btn btn-primary">Message</button>
+                </div>
+              </div>
+            </div>
+          </div>,
+        ])}
+    </div>
+  );
+}
