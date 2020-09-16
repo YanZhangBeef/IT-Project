@@ -1,0 +1,19 @@
+.content-image {
+  height: 400px;
+  width: 900px;
+  object-fit: cover;
+}
+
+.content-text {
+  font-size: 1.1rem !important;
+  line-height: 2.7rem !important;
+}
+
+.edit-content-text {
+  min-height: 40vh !important;
+}
+
+.edit-title {
+  font-size: 2rem !important;
+  color: black !important;
+}

@@ -2,19 +2,20 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
-import Navbar from "./Navbar";
-import ContentPageContainer from "./ContentPageContainer";
-import CreateContentPageContainer from "./CreateContentPageContainer";
-import ProfilePageContainer from "./ProfilePageContainer";
-import ContentPage from "./ContentPage";
-import ProfilePage from "./ProfilePage";
+import Navbar from "./components/navigation/Navbar";
+import ContentPageContainer from "./components/pages/ContentPageContainer";
+import CreateContentPageContainer from "./components/pages/CreateContentPageContainer";
+import ProfilePageContainer from "./components/pages/ProfilePageContainer";
+import SearchPage from "./components/pages/SearchPage";
+import ContentPage from "./components/pages/ContentPage";
+import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 
-import './data/firebase';
+import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
-
+import Chat from "./components/pages/Chat";
 
 function App() {
   return (
@@ -41,6 +42,11 @@ function App() {
         <Route exact path="/">
           <ProfilePage {...fakeProfile} />
         </Route>
+        <Route exact path="/chat" component={Chat} />
+        <Route path="/search">
+          <SearchPage />
+        </Route>
+
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
       </Switch>

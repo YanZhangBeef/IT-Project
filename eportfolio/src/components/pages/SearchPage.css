@@ -1,0 +1,35 @@
+.search-container {
+  margin: auto;
+  margin-top: 3%;
+  width: 50rem;
+}
+
+.flex-container {
+  position: relative;
+  top: 40%;
+  padding-top: 2.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 40rem;
+}
+
+.cp-1 {
+  flex: 1;
+  height: 25%;
+}
+.cp-2 {
+  flex: 1;
+  height: 25%;
+}
+
+.flex-container > h1 {
+  padding-top: 5%;
+  left: 25%;
+  font-size: 2.3 rem;
+}
+
+.more {
+  color: blue;
+  text-align: center;
+}

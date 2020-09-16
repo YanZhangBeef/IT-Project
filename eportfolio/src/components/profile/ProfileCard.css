@@ -1,0 +1,14 @@
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 8rem;
+  height: 8rem;
+  background: #c4c4c4;
+}
+
+.profile-name {
+  font-size: 1.8rem;
+}
