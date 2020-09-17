@@ -4,10 +4,6 @@ import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import "./Login.css";
 import { Redirect } from "react-router-dom";
-firebase.initializeApp({
-  apiKey: "AIzaSyB6-XzH_OqNcW5RMiD4iiZqSyQev22HIyw",
-  authDomain: "eportfolio-5head.firebaseapp.com",
-});
 
 const Login = (props) => {
   const [user, setUser] = useState(null);

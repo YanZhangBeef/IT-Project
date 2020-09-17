@@ -4,24 +4,53 @@ import {
   faPaperclip,
   faVideo,
   faComment,
+  faEdit,
 } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
 
-import "./SectionCard.css";
+import styles from "./SectionCard.module.css";
 
 export default function SectionCard(props) {
   return (
-    <div className="section-card shadow p-4 mt-5">
-      <h5>{props.title}</h5>
-      {props.content.map((item, index) => [
+    <div className={`${styles["section-card"]} shadow p-4 mt-5`}>
+      <div className="d-flex align-items-center">
+        <h5>{props.title}</h5>
+        {props.isEditable && (
+          <Link
+            to={`/newContent/${props.userId}/${props.sectionId}`}
+            className="ml-auto mx-2"
+          >
+            <button className={`btn ${styles["edit-icon-button"]}`}>
+              <FontAwesomeIcon icon={faPlusSquare} />
+            </button>
+          </Link>
+        )}
+      </div>
+      {props.contents.map((item, index) => [
         index !== 0 ? <hr /> : null,
 
-        <div key={item.contentId} className="section my-4">
-          <div className="section-image mr-4"></div>
-          <div className="section-content">
-            <h5>{item.title}</h5>
-            <p className="section-description">{item.description}</p>
-            <div className="section-footer mx-2">
-              <div className="section-icons">
+        <div key={item.contentId} className={`${styles.section} my-4`}>
+          <div className={`${styles["section-image"]} mr-4`}></div>
+          <div className={`${styles["section-content"]}`}>
+            <div className="d-flex align-items-center">
+              <h5>{item.title}</h5>
+              {props.isEditable && (
+                <Link
+                  to={`/editContent/${item.contentId}`}
+                  className="ml-auto mx-2 "
+                >
+                  <button className={`btn ${styles["edit-icon-button"]}`}>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                </Link>
+              )}
+            </div>
+            <p className={`${styles["section-description"]}`}>
+              {item.description}
+            </p>
+            <div className={`${styles["section-footer"]} mx-2`}>
+              <div className={`${styles["section-icons"]}`}>
                 <span className="mx-1">
                   <FontAwesomeIcon icon={faPaperclip} /> 2
                 </span>
@@ -32,7 +61,9 @@ export default function SectionCard(props) {
                   <FontAwesomeIcon icon={faComment} /> 3
                 </span>
               </div>
-              <button className="btn btn-primary">More</button>
+              <Link to={`/content/${item.contentId}`}>
+                <button className="btn btn-primary">More</button>
+              </Link>
             </div>
           </div>
         </div>,

@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.section-card {
+  background: #f5f6f8 !important;
+}
+
 .section-image {
   width: 12rem;
   height: 6rem;
@@ -28,4 +32,15 @@
 
 .section-icons {
   color: #737475;
+}
+
+.edit-icon-button {
+  color: #4698f9 !important;
+  font-size: 1.2rem !important;
+  transition: all 0.2s;
+  padding: 0 !important;
+}
+
+.edit-icon-button:hover {
+  color: #2c68b3 !important;
 }
