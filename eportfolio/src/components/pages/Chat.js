@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { rdb, db, auth } from "../../data/firebase";
 
 import SideChatBar from "../chat/SideChatBar";
 import ChatScreen from "../chat/ChatScreen";
 import classes from "./Chat.module.css";
 
-import SendText from "../chat/SendText";
 import ChatScreenHeading from "../chat/ChatScreenHeading";
+
 export default function Chat(props) {
   const [selected, setSelected] = useState("");
+  const [people, setPeople] = useState(["bob", "marley", "ross"]);
+  const [user, setUser] = useState("");
 
-  let people = ["John Smith", "Harry", "Lewis"];
+  useEffect(() => {
+    setUser(auth().currentUser.displayName);
+    return () => {};
+  }, [user]);
 
   const openChatHandler = (name) => {
     setSelected(name);
@@ -18,7 +24,7 @@ export default function Chat(props) {
     <div>
       <div className={classes.chat}>
         <div className={classes.sideChatBar}>
-          <ChatScreenHeading name="*User Name*" />
+          <ChatScreenHeading name={user} />
 
           {people.map((person) => {
             return <SideChatBar person={person} getName={openChatHandler} />;

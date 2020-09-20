@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import AuthRoute from "./data/AuthRoute";
 
 import Navbar from "./components/navigation/Navbar";
 import ContentPageContainer from "./components/pages/ContentPageContainer";
@@ -13,15 +14,25 @@ import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 
 import "./data/firebase";
+import { auth } from "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
 import Chat from "./components/pages/Chat";
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const unlisten = auth().onAuthStateChanged((user) => {
+      user ? setAuthenticated(true) : setAuthenticated(false);
+    });
+    return () => {
+      unlisten();
+    };
+  }, []);
   return (
     <React.Fragment>
       <Navbar />
-
       <Switch>
         <Route path="/newContent/:userId/:sectionId">
           <CreateContentPageContainer />
@@ -42,7 +53,12 @@ function App() {
         <Route exact path="/">
           <ProfilePage {...fakeProfile} />
         </Route>
-        <Route exact path="/chat" component={Chat} />
+        <AuthRoute
+          exact
+          path="/chat"
+          authenticated={authenticated}
+          component={Chat}
+        />
         <Route path="/search">
           <SearchPage />
         </Route>
