@@ -1,0 +1,59 @@
+#navbar{
+    background-color: #3578C9;
+}
+#searchform{   
+    margin-right:30rem;
+}
+.form-control{
+    margin-left: 0.25rem;
+}
+#eporfo{
+    color: white;
+}
+.input-group-prepend{
+    margin-top: 0.8rem;
+}
+#search{
+    margin-left: 30rem;
+    background-color: #96bbe8;
+    width: 20rem;
+}
+#searchinput{
+    background-color: #96bbe8;
+    border: 0ch;
+}
+#eport{
+    color: white;
+    font-size: medium;
+    margin-left:2rem;
+}
+#icons{
+    margin-left: 23rem;
+    width:13rem;
+    
+}
+#searchinput{
+    width: 15rem;
+    
+}
+#circle{
+
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgb(193, 189, 189);
+    margin-right: 0.3rem;
+    border-radius: 2rem;
+ 
+}
+#MailBulk{
+    margin-left: 0.65rem;
+}
+#user{
+    margin-left: 0.72rem;
+}
+#imailbulk{
+    color: white;
+}
+#iuser{
+    color: white;
+}

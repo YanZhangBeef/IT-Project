@@ -1,28 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Navbar.module.css";
-import Icon1 from "./img/MailIcon.png"
-import Icon2 from "./img/peopleIcon.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMailBulk,
+  faUser,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
 export default function Navbar(props) {
   return (
-    <nav className={`${styles["app-nav"]} navbar py-4 border-bottom shadow-sm`}>
-      <Link className={styles.link} to = "/login">ePortfolio</Link>
+<nav class="navbar navbar-expand-xl navbar-light" id = "navbar">
+    <a class="navbar-brand" id = "eport">ePortfolio</a>
 
-      <div className = {styles.searchContainer}>
-          <input type="text" id = "inputtext" name="condition" placeholder="Search" />
-          <input type="submit" id ="bottom" value="search" />
+
+  <div class="container" id = "search">
+  <form class="form-inline">
+    <div class="input-group">
+      <div class="input-group-prepend">
+      <FontAwesomeIcon icon={ faSearch} />
       </div>
+      <input type="text" class="form-control" id="searchinput" placeholder="search from unimelb students" aria-describedby="basic-addon1"/>
+    </div>
+  </form>
+</div>
 
 
-      {/**The PPL and mail Icon */}
-      <ul className={styles.navbaricon}>
-        <li className={styles.icon}> 
-          <Link to = "/chat"><img src={Icon1} alt="MailIcon"/></Link>
-        </li>
-        <li className={styles.icon}> 
-          <Link to = "/"><img src={Icon2} alt="PeopleIcon"/></Link>
-        </li>
-      </ul>
-    </nav>
-  );
+
+     <div class="container-fluid" id = "icons">
+    <div class = "circle" id = "circle">
+      <a class="navbar-brand" href="/chat" id = "MailBulk"><FontAwesomeIcon icon={faMailBulk} id="imailbulk"/></a> 
+    </div>
+    <div class = "circle" id = "circle">
+    <a class="navbar-brand" href="/" id = "user"><FontAwesomeIcon icon={ faUser} id = "iuser" /></a>
+    </div>
+    <a class="btn btn-outline-light" href="/login" role="button">login</a>
+    </div>
+</nav>
+  )
 }
