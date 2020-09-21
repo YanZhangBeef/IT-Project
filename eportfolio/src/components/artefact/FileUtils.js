@@ -1,4 +1,4 @@
-export const imageTypes = ["jpg", "jpeg", "png"];
+export const imageTypes = ["jpg", "jpeg", "png", "gif"];
 const pdfTypes = ["pdf"];
 const videoTypes = ["mov", "mp4", "flv"];
 export const artefactTypes = [...imageTypes, ...pdfTypes, ...videoTypes];

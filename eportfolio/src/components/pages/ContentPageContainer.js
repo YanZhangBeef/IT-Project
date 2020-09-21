@@ -6,6 +6,7 @@ import {
   deleteContent,
   fetchContent,
   updateContent,
+  uploadThumbnail,
 } from "../../data/ProfileRepository";
 
 export default function ContentPageContainer(props) {
@@ -31,6 +32,12 @@ export default function ContentPageContainer(props) {
     history.push(`/content/${contentId}`);
   };
 
+  const handleUpload = (file) => {
+    uploadThumbnail(contentId, file).then((data) => {
+      setContentData(Object.assign({}, contentData, data));
+    });
+  };
+
   useEffect(() => {
     fetchContent(contentId).then((data) => setContentData(data));
   }, [contentId]);
@@ -41,8 +48,13 @@ export default function ContentPageContainer(props) {
       handleSave={handleSave}
       handleDelete={handleDelete}
       handleCancel={handleCancel}
+      handleUpload={handleUpload}
     />
   ) : (
-    <ContentPage {...contentData} isEditable={true} />
+    <ContentPage
+      {...contentData}
+      isEditable={true}
+      handleUpload={handleUpload}
+    />
   );
 }

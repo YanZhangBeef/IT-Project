@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ArtefactSectionContainer from "../artefact/ArtefactSectionContainer";
+import Thumbnail from "../profile/Thumbnail";
 
 import styles from "./ContentPage.module.css";
 
@@ -44,9 +45,10 @@ export default function EditContentPage(props) {
         <span>{props.displayName}</span>
       </div>
 
-      <img
-        className={`${styles["content-image"]} m-1`}
-        src="https://images.unsplash.com/photo-1563805042-7684c019e1cb"
+      <Thumbnail
+        isEditable={true}
+        handleUpload={props.handleUpload}
+        thumbnailUrl={props.thumbnailUrl}
       />
 
       <textarea

@@ -4,12 +4,17 @@ import styles from "./ProfileCard.module.css";
 import cardStyles from "./SectionCard.module.css";
 
 import { EditableTextArea, EditableTextField } from "./EditableTextArea";
+import ProfileImage from "./ProfileImage";
 
 export default function ProfileCard(props) {
   return (
     <div className={`${cardStyles["section-card"]} shadow p-4 mt-5`}>
       <div className={`${styles["profile"]} my-2 mb-4`}>
-        <div className={`${styles["profile-image"]} mr-5`}></div>
+        <ProfileImage
+          isEditable={props.isEditable}
+          handleUpload={props.handleUpload}
+          thumbnailUrl={props.profilePictureUrl}
+        />
         <div className={`${styles["profile-content"]}`}>
           <h1 className={styles["profile-name"]}>{props.displayName}</h1>
           <EditableTextField
