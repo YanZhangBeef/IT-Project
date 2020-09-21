@@ -10,6 +10,8 @@ import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 
 import styles from "./SectionCard.module.css";
+import Thumbnail from "./Thumbnail";
+import SectionThumbnail from "./SectionThumbnail";
 
 export default function SectionCard(props) {
   return (
@@ -31,7 +33,9 @@ export default function SectionCard(props) {
         index !== 0 ? <hr /> : null,
 
         <div key={item.contentId} className={`${styles.section} my-4`}>
-          <div className={`${styles["section-image"]} mr-4`}></div>
+          <div className={`${styles["section-image"]} mr-4`}>
+            <SectionThumbnail thumbnailUrl={item.thumbnailUrl} />
+          </div>
           <div className={`${styles["section-content"]}`}>
             <div className="d-flex align-items-center">
               <h5>{item.title}</h5>
