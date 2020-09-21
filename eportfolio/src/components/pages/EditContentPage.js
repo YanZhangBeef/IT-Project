@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ArtefactSectionContainer from "../artefact/ArtefactSectionContainer";
+import ProfileImage from "../profile/ProfileImage";
 import Thumbnail from "../profile/Thumbnail";
 
 import styles from "./ContentPage.module.css";
@@ -41,12 +42,19 @@ export default function EditContentPage(props) {
         )}
       </div>
 
-      <div className="row m-1 mb-3">
+      <div className="d-flex align-items-center m-1 mb-3">
+        <div className="mr-3">
+          <ProfileImage
+            thumbnailUrl={props.profilePictureUrl}
+            height="3rem"
+            width="3rem"
+          />
+        </div>
         <span>{props.displayName}</span>
       </div>
 
       <Thumbnail
-        isEditable={true}
+        isEditable={!props.isNewPage}
         handleUpload={props.handleUpload}
         thumbnailUrl={props.thumbnailUrl}
       />

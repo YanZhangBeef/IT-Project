@@ -22,7 +22,7 @@ export default function ArtefactSection(props) {
         )}
       </div>
       <div className="d-flex flex-wrap mt-5">
-        {props.artefacts.length === 0 ? (
+        {props.artefacts == null || props.artefacts.length === 0 ? (
           <div>Nothing to see here</div>
         ) : (
           props.artefacts.map((artefact) => (

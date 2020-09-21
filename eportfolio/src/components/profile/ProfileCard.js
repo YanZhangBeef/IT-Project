@@ -10,11 +10,13 @@ export default function ProfileCard(props) {
   return (
     <div className={`${cardStyles["section-card"]} shadow p-4 mt-5`}>
       <div className={`${styles["profile"]} my-2 mb-4`}>
-        <ProfileImage
-          isEditable={props.isEditable}
-          handleUpload={props.handleUpload}
-          thumbnailUrl={props.profilePictureUrl}
-        />
+        <div className="mr-5">
+          <ProfileImage
+            isEditable={props.isEditable}
+            handleUpload={props.handleUpload}
+            thumbnailUrl={props.profilePictureUrl}
+          />
+        </div>
         <div className={`${styles["profile-content"]}`}>
           <h1 className={styles["profile-name"]}>{props.displayName}</h1>
           <EditableTextField

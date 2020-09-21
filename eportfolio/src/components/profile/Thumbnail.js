@@ -5,10 +5,10 @@ import styles from "./Thumbnail.module.css";
 
 export default function Thumbnail(props) {
   return (
-    <div className="m-1 border">
+    <div className="m-1">
       <EditableImage
         {...props}
-        className={styles.image}
+        className={"border " + styles.image}
         uploadButtonText="Upload thumbnail"
         uploadButtonClassName="btn btn-primary"
       />

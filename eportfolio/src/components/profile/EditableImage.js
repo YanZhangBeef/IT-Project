@@ -7,12 +7,14 @@ export default function EditableImage(props) {
     <div className={styles.thumbnail}>
       {props.thumbnailUrl && (
         <img
+          style={props.style}
           className={`${styles.image} ${props.className}`}
           src={props.thumbnailUrl}
         />
       )}
       {props.isEditable && (
         <div
+          style={props.style}
           className={
             styles.overlay +
             " " +

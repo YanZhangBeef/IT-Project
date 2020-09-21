@@ -91,6 +91,7 @@ export async function createContent(userId, sectionId, contentData) {
     batch.set(contentRef, { ...contentData, userId, sectionId });
     batch.update(sectionRef, {
       contents: firebase.firestore.FieldValue.arrayUnion(generatedContentId),
+      artefacts: [],
     });
 
     await batch.commit();
