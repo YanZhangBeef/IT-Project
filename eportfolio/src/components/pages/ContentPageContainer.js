@@ -9,7 +9,7 @@ import {
 } from "../../data/ProfileRepository";
 
 export default function ContentPageContainer(props) {
-  const [contentData, setContentData] = useState({});
+  const [contentData, setContentData] = useState({ artefacts: [] });
 
   const { contentId } = useParams();
   const history = useHistory();
@@ -33,7 +33,6 @@ export default function ContentPageContainer(props) {
 
   useEffect(() => {
     fetchContent(contentId).then((data) => setContentData(data));
-    console.log("fetching new content data");
   }, [contentId]);
 
   return props.isEditing ? (

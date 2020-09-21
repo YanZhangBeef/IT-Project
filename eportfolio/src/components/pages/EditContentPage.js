@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ArtefactSectionContainer from "../artefact/ArtefactSectionContainer";
 
 import styles from "./ContentPage.module.css";
 
@@ -55,8 +56,11 @@ export default function EditContentPage(props) {
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <h2 className="m-1">Artefacts</h2>
-      <div className="m-1 my-5">Nothing to see here</div>
+      <ArtefactSectionContainer
+        isEditable={true}
+        artefactIds={props.artefacts}
+        contentId={props.contentId}
+      />
       <h2 className="m-1">Comments</h2>
       <div className="m-1 my-5">Be the first to comment.</div>
     </div>

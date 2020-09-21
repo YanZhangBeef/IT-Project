@@ -1,0 +1,30 @@
+.artefactItem {
+  width: 20rem;
+  height: 5.5rem;
+  transition: all 0.4s;
+  border: 0.2rem solid #e8e8e8;
+  font-size: 1.1rem;
+  color: black;
+  cursor: pointer;
+}
+
+.artefactItem:hover {
+  transform: scale(1.1);
+  border: 0.2rem solid #439cc5;
+}
+
+.fileName {
+  user-select: none;
+}
+
+.artefactItem:active {
+  transform: scale(1.1);
+  border: 0.2rem solid #439cc5;
+
+  background: #cdefff;
+}
+
+.fileIcon {
+  font-size: 3rem;
+  color: #787878;
+}

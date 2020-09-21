@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ArtefactSectionContainer from "../artefact/ArtefactSectionContainer";
 
 import styles from "./ContentPage.module.css";
 
@@ -25,8 +26,11 @@ export default function ContentPage(props) {
       <p className={`${styles["content-text"]} m-1 my-5`}>
         {props.description}
       </p>
-      <h2 className="m-1">Artefacts</h2>
-      <div className="m-1 my-5">Nothing to see here</div>
+      <ArtefactSectionContainer
+        isEditable={props.isEditable}
+        artefactIds={props.artefacts}
+        contentId={props.contentId}
+      />
       <h2 className="m-1">Comments</h2>
       <div className="m-1 my-5">Be the first to comment.</div>
     </div>
