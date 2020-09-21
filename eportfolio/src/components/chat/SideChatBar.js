@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import ChatIndividual from "./ChatIndividual";
-import ChatScreenHeading from "./ChatScreenHeading";
 
 function sideChatBar(props) {
   return (
     <div>
-      <ChatIndividual name={props.person} getName={props.getName} />
+      <ChatIndividual
+        chatId={props.chatId}
+        getName={props.getName}
+        currUser={props.currUser}
+      />
     </div>
   );
 }
