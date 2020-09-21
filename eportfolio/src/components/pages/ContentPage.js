@@ -17,16 +17,18 @@ export default function ContentPage(props) {
           </Link>
         )}
       </div>
-      <div className="d-flex align-items-center m-1 mb-3">
-        <div className="mr-3">
-          <ProfileImage
-            thumbnailUrl={props.profilePictureUrl}
-            height="3rem"
-            width="3rem"
-          />
+      <Link to={"/profile/" + props.userId}>
+        <div className="d-flex align-items-center m-1 mb-3">
+          <div className="mr-3">
+            <ProfileImage
+              thumbnailUrl={props.profilePictureUrl}
+              height="3rem"
+              width="3rem"
+            />
+          </div>
+          <span class={styles.displayName}>{props.displayName}</span>
         </div>
-        <span>{props.displayName}</span>
-      </div>
+      </Link>
 
       <Thumbnail
         isEditable={props.isEditable}

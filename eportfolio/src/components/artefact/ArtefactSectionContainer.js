@@ -11,7 +11,7 @@ export default function ArtefactSectionContainer(props) {
 
   useEffect(() => {
     console.log(props.artefactIds);
-    fetchArtefacts(props.artefactIds).then(setArtefacts);
+    props.artefactIds && fetchArtefacts(props.artefactIds).then(setArtefacts);
   }, [props.artefactIds]);
 
   const handleDeleteArtefact = (artefactId) => {

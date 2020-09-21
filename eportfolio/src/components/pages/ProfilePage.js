@@ -11,6 +11,7 @@ export default function ProfilePage(props) {
         <SectionCard
           key={section.sectionId}
           {...section}
+          createNewContent={props.createNewContent}
           isEditable={props.isEditable}
         />
       ))}
