@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import { db, storage } from "./firebase";
 import { v4 as uuidv4 } from "uuid";
+import { deleteArtefact } from "./ArtefactRepository";
 
 // should probably change schema to use ids....
 
@@ -75,6 +76,11 @@ export async function deleteContent(contentId) {
       contents: firebase.firestore.FieldValue.arrayRemove(contentId),
     });
     await batch.commit();
+
+    if (content.artefacts != null && content.artefacts.length !== 0) {
+      await Promise.all(content.artefacts.map(deleteArtefact));
+    }
+
     return content.data().userId;
   } catch (e) {
     console.error("Error deleting content", e);

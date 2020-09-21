@@ -51,7 +51,7 @@ export default function EditContentPage(props) {
               width="3rem"
             />
           </div>
-          <span class={styles.displayName}>{props.displayName}</span>
+          <span className={styles.displayName}>{props.displayName}</span>
         </div>
       </Link>
 
