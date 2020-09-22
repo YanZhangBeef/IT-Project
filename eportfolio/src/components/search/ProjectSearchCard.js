@@ -10,7 +10,7 @@ import classes from "./ProjectSearchCard.module.css";
 
 export default function ProjectSearchCard(props) {
   return (
-    <div className="section-card shadow p-4 mt-5">
+    <div className={`${classes.sectionCard} shadow p-4 mt-5`}>
       <h5>{props.title}</h5>
 
       {props.content

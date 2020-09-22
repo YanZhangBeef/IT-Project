@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.section-card {
+  background: #f5f6f8 !important;
+}
+
 .sectionImage {
   width: 12rem;
   height: 6rem;
