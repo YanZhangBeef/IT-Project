@@ -2,9 +2,9 @@ import React from "react";
 import classes from "./SendText.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPaperclip,
-  faVideo,
-  faComment,
+  // faPaperclip,
+  // faVideo,
+  // faComment,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 export default function SendText(props) {
@@ -15,15 +15,17 @@ export default function SendText(props) {
   };
   return (
     <div>
-      <form onSubmit={props.getText}>
+      <form onSubmit={props.sendText}>
         <div className={classes.textBox}>
           <input
             type="text"
             onChange={(event) => {
-              newText(event);
+              props.getText(event);
             }}
           />
-          <FontAwesomeIcon icon={faPaperPlane} />
+          <button type="submit" onSubmit={props.sendText}>
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </button>
         </div>
       </form>
     </div>
