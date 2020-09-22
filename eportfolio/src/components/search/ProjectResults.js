@@ -1,16 +1,12 @@
 import React from "react";
-import SearchCard from "./ProjectSearchCard";
+import SectionCard from "./ProjectSearchCard";
 
-const projectCard = () => (
-  <div className="flex-container">
-    <div className="cp-1">
-      <SearchCard />
-    </div>
-
-    <div className="cp-2">
-      <SearchCard />
-    </div>
+const projectResults = (props) => (
+  <div>
+    {props.data.sections.map((section) => (
+      <SectionCard key={section.sectionId} {...section} />
+    ))}
   </div>
 );
 
-export default projectCard;
+export default projectResults;
