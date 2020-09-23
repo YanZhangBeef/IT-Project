@@ -20,9 +20,9 @@ const Login = (props) => {
   };
 
   useEffect(() => {
-    const unlisten = firebase.auth().onAuthStateChanged((user) => {
-      user ? setUser(user) : setUser(null);
-      console.log(user);
+    const unlisten = firebase.auth().onAuthStateChanged((loggedIn) => {
+      loggedIn ? setUser(loggedIn) : setUser(null);
+      console.log(loggedIn);
     });
     return () => {
       unlisten();

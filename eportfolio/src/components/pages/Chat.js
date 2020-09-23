@@ -20,7 +20,7 @@ export default function Chat(props) {
     setSelected(name);
   };
   return (
-    <div>
+    <div className="container.fluid">
       <div className={classes.chat}>
         <div className={classes.sideChatBar}>
           <ChatScreenHeading name={user} />

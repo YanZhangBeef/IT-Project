@@ -40,8 +40,8 @@ export default function ChatScreen(props) {
   }
 
   //need to change this a bit as well
-  let getTextHandler = (event) => {
-    let text = { name: props.me, message: event.target.value };
+  let getTextHandler = (message) => {
+    let text = { name: props.me, message: message };
     setNewText(text);
   };
 
@@ -55,7 +55,7 @@ export default function ChatScreen(props) {
   };
 
   return (
-    <div className={classes.container}>
+    <div className="container.fluid">
       <ChatScreenHeading name={props.person ? props.person : chatSelect} />
       <div className={classes.scroll}>
         {convo.map((message) => {

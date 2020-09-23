@@ -12,18 +12,43 @@ export default function SendText(props) {
 
   const newText = (event) => {
     text = event.target.value;
+    props.getText(text);
+  };
+
+  const submitHandler = (event) => {
+    props.sendText();
+    resetText();
+    event.preventDefault();
+  };
+
+  const resetText = () => {
+    document.getElementById("textInput").value = "";
   };
   return (
-    <div>
-      <form onSubmit={props.sendText}>
+    <div className="container">
+      <form
+        onSubmit={(event) => {
+          submitHandler(event);
+        }}
+      >
         <div className={classes.textBox}>
           <input
+            id="textInput"
+            // className={classes.inputBar}
+
             type="text"
             onChange={(event) => {
-              props.getText(event);
+              // props.getText(event);
+              newText(event);
             }}
           />
-          <button type="submit" onSubmit={props.sendText}>
+          <button
+            className={classes.sendButton}
+            type="submit"
+            onSubmit={(event) => {
+              submitHandler(event);
+            }}
+          >
             <FontAwesomeIcon icon={faPaperPlane} />
           </button>
         </div>
