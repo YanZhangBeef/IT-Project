@@ -16,18 +16,14 @@ import { getFileType } from "../artefact/FileUtils";
 
 export default function SectionCard(props) {
   const nAttachments = (item) => {
-    return item.artefacts?.length;
+    if (item.artefacts == null) return 0;
+    return item.artefacts.length;
   };
 
   const nVideos = (item) => {
-    return item.artefacts?.filter(
+    if (item.artefacts == null) return 0;
+    return item.artefacts.filter(
       (artefact) => "video" === getFileType(artefact.fileName)
-    ).length;
-  };
-
-  const nDocuments = (item) => {
-    return item.artefacts?.filter(
-      (artefact) => "pdf" === getFileType(artefact.fileName)
     ).length;
   };
 
