@@ -1,0 +1,42 @@
+.circle{
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgb(193, 189, 189);
+    margin-right: 0.3rem;
+    border-radius: 2rem;
+ 
+}
+.eporfo{
+    color: white;
+    margin-left:2rem;
+}
+
+.navbar{
+    background-color: #3578C9;
+    box-sizing: border-box;
+}
+
+.searchbarContainer{
+    background-Color: #96bbe8;
+    margin-Left: 30%;
+    width: 40rem;
+
+}
+.inputGroupPrepend{
+    margin-top: 0.8rem;
+    margin-left: 0.3rem;
+
+}
+.iconsHolder{
+    margin-left: 23%;
+    width:13rem;
+    
+}
+.peopleIcon{
+    margin-left: 0.72rem;
+    color: white;
+}
+.mailIcon{
+    margin-left: 0.6rem;
+    color: white;
+}
