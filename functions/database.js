@@ -10,10 +10,12 @@ const populateDummyData = async () => {
     const artefactRef = db.collection("artefacts").doc("dummy-artefact");
 
     try {
-        await userRef.set(Object.assign({}, dummyUser, {sections: [sectionRef.id]} ));
+        await userRef.set(Object.assign({}, dummyUser));
         await sectionRef.set(Object.assign({}, dummySection, {userId: userRef.id, contents: [contentRef.id]}));
         await contentRef.set(Object.assign({}, dummyContent, { userId: userRef.id, sectionId: sectionRef.id}));
         await artefactRef.set(dummyArtefact);
+        await db.collection('sections').doc('dummy-course-section').set(dummyCourseSection);
+        await db.collection('sectionContents').doc('dummy-course-content').set(dummyCourseContent);
     }
     catch (e) {
         console.log(e);
@@ -25,7 +27,7 @@ const dummyUser = {
     profileImg: "",
     tagline: "University of Melbourne",
     about: "I'm a student at the university of melbourne",
-    sections: []
+    sections: ['dummy-section', 'dummy-course-section']
 }
 
 const dummySection = {
@@ -33,9 +35,26 @@ const dummySection = {
     contents: []
 }
 
+const dummyCourseSection = {
+    userId: 'dummy-user',
+    title: "Courses",
+    contents: ['dummy-course-content'],
+    special: true
+}
+
+const dummyCourseContent = {
+    userId: 'dummy-user',
+    sectionId: 'dummy-course-section',
+    thumbnailUrl: '',
+    squareThumbnailUrl: '',
+    title: 'bachelor of Science, Monster University',
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque viverra justo nec ultrices. Penatibus et magnis dis parturient montes nascetur. Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Pulvinar proin gravida hendrerit lectus a. Arcu non odio euismod lacinia at. Gravida cum sociis natoque penatibus et magnis dis. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Elit at imperdiet dui accumsan sit amet nulla facilisi. Scelerisque felis imperdiet proin fermentum leo. Vehicula ipsum a arcu cursus. Euismod in pellentesque massa placerat. Nec nam aliquam sem et tortor consequat id porta. Sit amet risus nullam eget felis eget nunc lobortis mattis. Mi eget mauris pharetra et.",
+    artefacts: []
+}
+
 const dummyContent = {
     title: "My Awesome Project",
-    thumbnailImg: "",
+    thumbnailUrl: "",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque viverra justo nec ultrices. Penatibus et magnis dis parturient montes nascetur. Dolor sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. Pulvinar proin gravida hendrerit lectus a. Arcu non odio euismod lacinia at. Gravida cum sociis natoque penatibus et magnis dis. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Elit at imperdiet dui accumsan sit amet nulla facilisi. Scelerisque felis imperdiet proin fermentum leo. Vehicula ipsum a arcu cursus. Euismod in pellentesque massa placerat. Nec nam aliquam sem et tortor consequat id porta. Sit amet risus nullam eget felis eget nunc lobortis mattis. Mi eget mauris pharetra et.",
     artefacts: ["dummy-artefact"]
 }

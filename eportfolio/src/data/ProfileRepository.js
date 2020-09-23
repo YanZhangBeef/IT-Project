@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import { db, storage } from "./firebase";
 import { v4 as uuidv4 } from "uuid";
-import { deleteArtefact } from "./ArtefactRepository";
+import { deleteArtefact, fetchArtefacts } from "./ArtefactRepository";
 
 // should probably change schema to use ids....
 
@@ -17,6 +17,7 @@ export async function fetchContent(contentId) {
     return Object.assign({}, contentData, userData, {
       contentId: content.id,
       userId: userId,
+      artefacts: await fetchArtefacts(contentData.artefacts),
     });
   } catch (e) {
     console.log(e);
@@ -26,6 +27,7 @@ export async function fetchContent(contentId) {
 export async function fetchProfile(userId) {
   try {
     const user = await db.collection("users").doc(userId).get();
+    console.log(userId);
     const sections = await Promise.all(
       user.data().sections.map(fetchSectionHelper)
     );
@@ -131,6 +133,38 @@ export async function uploadThumbnail(contentId, file) {
     return Object.assign({}, content, {
       thumbnailUrl,
       thumbnailFullPath: fileRef.fullPath,
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function uploadSquareThumbnail(contentId, file) {
+  try {
+    const content = await fetchContent(contentId);
+
+    const fileRef = storage
+      .ref()
+      .child(content.userId)
+      .child(contentId)
+      .child("squareThumbnail")
+      .child(file.name);
+
+    await fileRef.put(file);
+    const squareThumbnailUrl = await fileRef.getDownloadURL();
+    console.log(squareThumbnailUrl);
+    await updateContent(contentId, {
+      squareThumbnailUrl,
+      squareThumbnailFullPath: fileRef.fullPath,
+    });
+
+    if (content.thumbnailFullPath != null) {
+      await storage.ref().child(content.squareThumbnailFullPath).delete();
+    }
+
+    return Object.assign({}, content, {
+      squareThumbnailUrl,
+      squareThumbnailFullPath: fileRef.fullPath,
     });
   } catch (e) {
     console.error(e);

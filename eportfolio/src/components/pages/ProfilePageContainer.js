@@ -7,6 +7,7 @@ import {
   fetchProfile,
   updateProfile,
   uploadProfilePicture,
+  uploadSquareThumbnail,
 } from "../../data/ProfileRepository";
 
 export default function ProfilePageContainer(props) {
@@ -16,12 +17,19 @@ export default function ProfilePageContainer(props) {
   const history = useHistory();
 
   useEffect(() => {
+    console.log("fetching " + userId);
     fetchProfile(userId).then((data) => setProfileData(data));
   }, [userId]);
 
   const handleUpload = (file) => {
     uploadProfilePicture(userId, file).then((data) => {
       setProfileData(Object.assign({}, profileData, data));
+    });
+  };
+
+  const handleSquareThumbnailUpload = (contentId, file) => {
+    uploadSquareThumbnail(contentId, file).then(() => {
+      fetchProfile(userId).then((data) => setProfileData(data));
     });
   };
 
@@ -41,6 +49,7 @@ export default function ProfilePageContainer(props) {
         updateProfile(userId, data);
         setProfileData(Object.assign({}, profileData, data));
       }}
+      handleSquareThumbnailUpload={handleSquareThumbnailUpload}
     />
   );
 }

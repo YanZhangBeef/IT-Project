@@ -5,15 +5,34 @@ import {
   faVideo,
   faComment,
   faEdit,
+  faFilePdf,
 } from "@fortawesome/free-solid-svg-icons";
 import { faPlusSquare } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
 
 import styles from "./SectionCard.module.css";
-import Thumbnail from "./Thumbnail";
 import SectionThumbnail from "./SectionThumbnail";
+import { getFileType } from "../artefact/FileUtils";
 
 export default function SectionCard(props) {
+  const nAttachments = (item) => {
+    return item.artefacts?.length;
+  };
+
+  const nVideos = (item) => {
+    return item.artefacts?.filter(
+      (artefact) => "video" === getFileType(artefact.fileName)
+    ).length;
+  };
+
+  const nDocuments = (item) => {
+    return item.artefacts?.filter(
+      (artefact) => "pdf" === getFileType(artefact.fileName)
+    ).length;
+  };
+
+  const nComments = (item) => 0;
+
   return (
     <div className={`${styles["section-card"]} shadow p-4 mt-5`}>
       <div className="d-flex align-items-center">
@@ -33,7 +52,18 @@ export default function SectionCard(props) {
 
           <div className={`${styles.section} my-4`}>
             <div className={`${styles["section-image"]} mr-4`}>
-              <SectionThumbnail thumbnailUrl={item.thumbnailUrl} />
+              {props.squareThumbnail ? (
+                <SectionThumbnail
+                  thumbnailUrl={item.squareThumbnailUrl}
+                  square={true}
+                  isEditable={props.isEditable}
+                  handleUpload={(file) => {
+                    props.handleSquareThumbnailUpload(item.contentId, file);
+                  }}
+                />
+              ) : (
+                <SectionThumbnail thumbnailUrl={item.thumbnailUrl} />
+              )}
             </div>
             <div className={`${styles["section-content"]}`}>
               <div className="d-flex align-items-center">
@@ -55,13 +85,13 @@ export default function SectionCard(props) {
               <div className={`${styles["section-footer"]} mx-2`}>
                 <div className={`${styles["section-icons"]}`}>
                   <span className="mx-1">
-                    <FontAwesomeIcon icon={faPaperclip} /> 2
+                    <FontAwesomeIcon icon={faPaperclip} /> {nAttachments(item)}
                   </span>
                   <span className="mx-1 ml-2">
-                    <FontAwesomeIcon icon={faVideo} /> 1
+                    <FontAwesomeIcon icon={faVideo} /> {nVideos(item)}
                   </span>
                   <span className="mx-1">
-                    <FontAwesomeIcon icon={faComment} /> 3
+                    <FontAwesomeIcon icon={faComment} /> {nComments(item)}
                   </span>
                 </div>
                 <Link to={`/content/${item.contentId}`}>

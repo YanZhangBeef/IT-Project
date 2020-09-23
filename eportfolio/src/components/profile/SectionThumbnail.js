@@ -7,9 +7,9 @@ export default function SectionThumbnail(props) {
   return (
     <EditableImage
       {...props}
-      className={styles.image}
+      className={props.square ? styles.imageSquare : styles.image}
       uploadButtonText="Upload"
-      uploadButtonClassName="btn btn-primary-outline"
+      uploadButtonClassName="btn btn-outline-primary"
     />
   );
 }

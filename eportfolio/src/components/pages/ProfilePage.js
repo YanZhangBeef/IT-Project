@@ -13,6 +13,8 @@ export default function ProfilePage(props) {
           {...section}
           createNewContent={props.createNewContent}
           isEditable={props.isEditable}
+          handleSquareThumbnailUpload={props.handleSquareThumbnailUpload}
+          squareThumbnail={section.special}
         />
       ))}
     </div>

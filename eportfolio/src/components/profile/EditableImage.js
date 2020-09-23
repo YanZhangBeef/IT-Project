@@ -1,8 +1,10 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 
 import styles from "./EditableImage.module.css";
 
 export default function EditableImage(props) {
+  const inputId = uuid();
   return (
     <div className={styles.thumbnail}>
       {props.thumbnailUrl && (
@@ -24,7 +26,7 @@ export default function EditableImage(props) {
           }
         >
           <label
-            htmlFor="editableimage-input"
+            htmlFor={inputId}
             className={"m-auto " + props.uploadButtonClassName}
           >
             {props.uploadButtonText}
@@ -32,9 +34,12 @@ export default function EditableImage(props) {
           <input
             type="file"
             accept="image/jpeg, image/png, image/gif"
-            id="editableimage-input"
+            id={inputId}
             style={{ display: "none" }}
-            onChange={(e) => props.handleUpload(e.target.files[0])}
+            onChange={(e) => {
+              console.log("uploading");
+              props.handleUpload(e.target.files[0]);
+            }}
           />
         </div>
       )}
