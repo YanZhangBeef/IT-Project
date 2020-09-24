@@ -6,6 +6,7 @@ import cardStyles from "./SectionCard.module.css";
 import { EditableTextArea, EditableTextField } from "./EditableTextArea";
 
 export default function ProfileCard(props) {
+  console.log("KKK:" + props.displayName);
   return (
     <div className={`${cardStyles["section-card"]} shadow p-4 mt-5`}>
       <div className={`${styles["profile"]} my-2 mb-4`}>

@@ -1,13 +1,28 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import userSearch from "../../algolia/searchFunctions";
 import ProfileCard from "../profile/ProfileCard";
 import { fakeProfile } from "../../TestData";
 
-const peopleResults = () => (
-  <div>
-    <ProfileCard {...fakeProfile.profile} />
-    <ProfileCard {...fakeProfile.profile} />
-  </div>
-);
+function PeopleResults(props) {
+  const [appState, setAppState] = useState({
+    loading: false,
+    repos: null,
+  });
 
-export default peopleResults;
+  useEffect(() => {
+    setAppState({ loading: true });
+    userSearch(props.query).then((res) => {
+      setAppState({ loading: false, repos: res });
+    });
+  }, [props.query]);
+
+  console.log(appState.repos);
+
+  return (
+    <div>
+      <ProfileCard />
+    </div>
+  );
+}
+
+export default PeopleResults;

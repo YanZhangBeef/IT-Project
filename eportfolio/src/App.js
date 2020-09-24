@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
@@ -11,16 +11,33 @@ import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-
+import { Provider } from "react-redux";
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
 import Chat from "./components/pages/Chat";
 
+const test = () => {
+  console.log("works");
+};
+
 function App() {
+  /* hook for search functionalities */
+  const [query, setQuery] = useState([]);
+
+  const setData = async (val) => {
+    console.log(val);
+    if (val) {
+      setQuery(val);
+    }
+  };
+  useEffect(() => {
+    console.log("Effect does this:" + query);
+  });
+
   return (
     <React.Fragment>
-      <Navbar />
+      <Navbar func={setData} />
 
       <Switch>
         <Route path="/newContent/:userId/:sectionId">
@@ -44,7 +61,7 @@ function App() {
         </Route>
         <Route exact path="/chat" component={Chat} />
         <Route path="/search">
-          <SearchPage {...fakeProfile} />
+          <SearchPage data={query} />
         </Route>
 
         <Route exact path="/login" component={Login} />

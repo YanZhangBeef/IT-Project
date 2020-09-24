@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import styles from "./SectionCard.module.css";
 
 export default function SectionCard(props) {
+  console.log("KKK:" + props);
   return (
     <div className={`${styles["section-card"]} shadow p-4 mt-5`}>
       <div className="d-flex align-items-center">
