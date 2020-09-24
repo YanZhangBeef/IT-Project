@@ -5,13 +5,13 @@ import ChatScreenHeading from "./ChatScreenHeading";
 import SendText from "./SendText";
 import classes from "./ChatScreen.module.css";
 import { rdb, db, auth } from "../../data/firebase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPaperclip,
-  faVideo,
-  faComment,
-  faPaperPlane,
-} from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faPaperclip,
+//   faVideo,
+//   faComment,
+//   faPaperPlane,
+// } from "@fortawesome/free-solid-svg-icons";
 
 export default function ChatScreen(props) {
   const [convo, setConvo] = useState([]);

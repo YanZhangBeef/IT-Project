@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ChatIndividual from "./ChatIndividual";
-import ChatScreenHeading from "./ChatScreenHeading";
+// import ChatScreenHeading from "./ChatScreenHeading";
 import { rdb, db, auth } from "../../data/firebase";
 
 function SideChatBar(props) {
