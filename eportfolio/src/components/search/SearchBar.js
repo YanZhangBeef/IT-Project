@@ -6,14 +6,15 @@ const SearchBar = (props) => {
   const [query, setQuery] = useState("");
   function handleChange(e) {
     setQuery(e.target.value);
+    props.history.push({ pathname: "/search", state: query });
   }
-  function handleSubmit(event) {
-    console.log("query is: " + query);
-    event.preventDefault();
-  }
+  // function handleSubmit(event) {
+  //   console.log("query is: " + query);
+  //   event.preventDefault();
+  // }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <label>
         Search:
         <input type="text" name="query" value={query} onChange={handleChange} />

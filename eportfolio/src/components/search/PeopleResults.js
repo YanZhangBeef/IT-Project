@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from "react";
-import userSearch from "../../algolia/searchFunctions";
+import userSearch from "../../algolia/searchFunctions.js";
 import ProfileCard from "../profile/ProfileCard";
-import { fakeProfile } from "../../TestData";
 
 function PeopleResults(props) {
-  const [appState, setAppState] = useState({
+  const [userData, setUserData] = useState({
     loading: false,
     repos: null,
   });
 
   useEffect(() => {
-    setAppState({ loading: true });
+    setUserData({ loading: true });
     userSearch(props.query).then((res) => {
-      setAppState({ loading: false, repos: res });
+      setUserData({ loading: false, repos: res });
     });
   }, [props.query]);
 
-  console.log(appState.repos);
-
-  return (
-    <div>
-      <ProfileCard />
-    </div>
-  );
+  if (userData.repos == null || props.query == "") {
+    return (
+      <div>
+        <h1>No profile found</h1>
+      </div>
+    );
+  } else {
+    console.log(userData.repos);
+    return (
+      <div>
+        {userData.repos.map((user) => (
+          <ProfileCard key={user.objectID} {...user} />
+        ))}
+      </div>
+    );
+  }
 }
 
 export default PeopleResults;
