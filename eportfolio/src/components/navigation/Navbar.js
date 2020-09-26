@@ -9,8 +9,8 @@ import {
 
 export default function Navbar(props) {
   return (
-
-    <nav className={`navbar navbar-expand-xl navbar-light ${navbarStyles.navbar}`}>
+    
+    <nav className={`navbar navbar-expand-sm navbar-light fixed-top  ${navbarStyles.navbar}`}>
       <a class = "navbar-brand"style = {{marginLeft: "2rem", color:"white"}}>ePortfolio</a>
 
       {/**the search bar module*/}
@@ -25,8 +25,8 @@ export default function Navbar(props) {
 
             {/**search input */}
             <input type="text" class="form-control" 
-            style = {{border: "0ch", backgroundColor: "#96bbe8",width: "18rem"}}
-            placeholder="search from unimelb students" 
+            style = {{border: "0ch", backgroundColor: "#96bbe8"}}
+            placeholder="search from students" 
             aria-describedby="basic-addon1"/>
           </div>
         </form>
