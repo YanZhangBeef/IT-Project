@@ -13,10 +13,10 @@ export async function fetchChat(handle) {
 
 export async function fetchUser() {
   try {
-    const email = auth().currentUser.email;
+    const uid = auth().currentUser.uid;
     const name = auth().currentUser.displayName;
 
-    return Object.assign({}, { email: email, name: name });
+    return Object.assign({}, { uid: uid, name: name });
   } catch (e) {
     console.log(e);
   }

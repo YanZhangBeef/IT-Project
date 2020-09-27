@@ -18,8 +18,8 @@ export default function Chat(props) {
   }, []);
 
   useEffect(() => {
-    if (user.email) {
-      fetchChat(user.email).then((data) => setChats(data));
+    if (user.uid) {
+      fetchChat(user.uid).then((data) => setChats(data));
     }
   }, [user]);
 
