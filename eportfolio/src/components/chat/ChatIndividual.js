@@ -1,7 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./ChatIndividual.module.css";
+import { fetchChatName } from "../../data/ChatRepository";
+import { rdb } from "../../data/firebase";
 
 function ChatIndividual(props) {
+  const [member, setMember] = useState([]);
+  const [lastMessage, setLastMessage] = useState("");
+
+  useEffect(() => {
+    fetchChatName(props.currUser, props.chatId).then((data) => {
+      setMember(data);
+      {
+        console.log();
+      }
+    });
+  }, [props.chatId, props.currUser]);
+
+  useEffect(() => {
+    rdb.ref(`/chats/${props.chatId}`).on("value", (snapshot) => {
+      setLastMessage(snapshot.val().lastMessage);
+    });
+  });
   return (
     <div className={classes.individualChat}>
       <img
@@ -12,11 +31,16 @@ function ChatIndividual(props) {
       <div
         className={classes.individualChatInfo}
         onClick={() => {
-          props.getName(props.name);
+          props.getId(props.chatId, member);
         }}
       >
-        <h2 className={classes.individualName}>{props.name}</h2>
-        <p className={classes.individualConvo}> *Hardcode for now*</p>
+        <h2 className={classes.individualName}>
+          {member ? member.join() : "loading"}
+        </h2>
+        <p className={classes.individualConvo}>
+          {" "}
+          {lastMessage ? lastMessage : "loading"}
+        </p>
       </div>
     </div>
   );

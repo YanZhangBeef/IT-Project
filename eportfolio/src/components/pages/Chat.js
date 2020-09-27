@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { rdb, db, auth } from "../../data/firebase";
+import { fetchUser, fetchChat } from "../../data/ChatRepository";
 
 import SideChatBar from "../chat/SideChatBar";
 import ChatScreen from "../chat/ChatScreen";
@@ -9,26 +9,53 @@ import ChatScreenHeading from "../chat/ChatScreenHeading";
 
 export default function Chat(props) {
   const [selected, setSelected] = useState("");
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({ name: "", email: "" });
+  const [chats, setChats] = useState([]);
+  const [selectedName, setSelectedName] = useState("");
 
   useEffect(() => {
-    setUser(auth().currentUser.displayName);
-    return () => {};
+    fetchUser().then((data) => setUser(data));
+  }, []);
+
+  useEffect(() => {
+    if (user.email) {
+      fetchChat(user.email).then((data) => setChats(data));
+    }
   }, [user]);
 
-  const openChatHandler = (name) => {
-    setSelected(name);
+  const openChatHandler = (id, name) => {
+    setSelected(id);
+    setSelectedName(name);
   };
+
+  // const getChatNameHandler = () => {
+
+  // }
+
   return (
     <div className="container.fluid">
       <div className={classes.chat}>
         <div className={classes.sideChatBar}>
-          <ChatScreenHeading name={user} />
-          <SideChatBar getName={openChatHandler} />
+          {user ? <ChatScreenHeading name={user.name} /> : <p>loading...</p>}
+
+          {chats ? (
+            chats.map((chatId) => {
+              return (
+                <SideChatBar
+                  key={chatId}
+                  chatId={chatId}
+                  currUser={user.name}
+                  getId={openChatHandler}
+                />
+              );
+            })
+          ) : (
+            <p>No data</p>
+          )}
         </div>
 
         <div className={classes.chatScreen}>
-          <ChatScreen me={user} person={selected} />
+          <ChatScreen me={user} person={selected} name={selectedName} />
         </div>
       </div>
     </div>

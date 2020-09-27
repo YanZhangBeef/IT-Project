@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import "./Login.css";
+import styles from "./Login.module.css";
 import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
@@ -22,20 +22,19 @@ const Login = (props) => {
   useEffect(() => {
     const unlisten = firebase.auth().onAuthStateChanged((loggedIn) => {
       loggedIn ? setUser(loggedIn) : setUser(null);
-      console.log(loggedIn);
     });
     return () => {
       unlisten();
     };
   }, []);
   return (
-    <div className="login-container">
+    <div className={styles["login-container"]}>
       {user ? (
         <Redirect to="/home" />
       ) : (
-        <div className="login shadow">
-          <div className="login-method">
-            <div className="login-header">
+        <div className={`${styles["login"]} shadow`}>
+          <div className={styles["login-method"]}>
+            <div className={styles["login-header"]}>
               <h2>Log In</h2>
             </div>
             <StyledFirebaseAuth
@@ -43,7 +42,7 @@ const Login = (props) => {
               firebaseAuth={firebase.auth()}
             />
           </div>
-          <div className="app-icon"></div>
+          <div className={styles["app-icon"]}></div>
         </div>
       )}
     </div>
