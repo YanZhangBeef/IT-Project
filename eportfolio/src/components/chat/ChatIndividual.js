@@ -11,7 +11,8 @@ function ChatIndividual(props) {
     fetchChatName(props.currUser, props.chatId).then((data) => {
       setMember(data);
     });
-  });
+    console.log(member);
+  }, [member, props.chatId, props.currUser]);
   useEffect(() => {
     rdb.ref(`/chats/${props.chatId}`).on("value", (snapshot) => {
       setLastMessage(snapshot.val().lastMessage);
