@@ -10,8 +10,8 @@ import {
 export default function Navbar(props) {
   return (
     
-    <nav className={`navbar navbar-expand-sm navbar-light fixed-top  ${navbarStyles.navbar}`}>
-      <a class = "navbar-brand"style = {{marginLeft: "2rem", color:"white"}}>ePortfolio</a>
+    <nav className={`navbar navbar-expand-md navbar-light fixed-top  ${navbarStyles.navbar}`}>
+      <a class = "collapse navbar-collapse"style = {{marginLeft: "2rem", marginRight:"20rem", color:"white"}}>ePortfolio</a>
 
       {/**the search bar module*/}
       <div className={`d-flex align-items-center" ${navbarStyles.searchbarContainer}`}>
@@ -33,7 +33,7 @@ export default function Navbar(props) {
     </div>
 
       {/**Icon module*/}
-      <a className={`navbar-brand ${navbarStyles.iconsHolder}`}>
+      <a className={`collapse navbar-collapse ${navbarStyles.iconsHolder}`}>
         {/**Mail Icon*/}
         <div class="d-flex align-items-center">
           <div className = {navbarStyles.circle}>
