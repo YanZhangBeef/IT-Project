@@ -11,8 +11,8 @@ function ChatIndividual(props) {
     fetchChatName(props.currUser, props.chatId).then((data) => {
       setMember(data);
     });
-    console.log(member);
-  }, [member, props.chatId, props.currUser]);
+  }, [props.chatId, props.currUser]);
+
   useEffect(() => {
     rdb.ref(`/chats/${props.chatId}`).on("value", (snapshot) => {
       setLastMessage(snapshot.val().lastMessage);
@@ -28,7 +28,7 @@ function ChatIndividual(props) {
       <div
         className={classes.individualChatInfo}
         onClick={() => {
-          props.getName(props.chatId);
+          props.getId(props.chatId, member);
         }}
       >
         <h2 className={classes.individualName}>

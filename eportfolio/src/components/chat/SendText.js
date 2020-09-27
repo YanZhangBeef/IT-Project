@@ -2,9 +2,9 @@ import React from "react";
 import classes from "./SendText.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPaperclip,
-  faVideo,
-  faComment,
+  // faPaperclip,
+  // faVideo,
+  // faComment,
   faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 export default function SendText(props) {
@@ -12,18 +12,45 @@ export default function SendText(props) {
 
   const newText = (event) => {
     text = event.target.value;
+    props.getText(text);
+  };
+
+  const submitHandler = (event) => {
+    props.sendText();
+    resetText();
+    event.preventDefault();
+  };
+
+  const resetText = () => {
+    document.getElementById("textInput").value = "";
   };
   return (
-    <div>
-      <form onSubmit={props.getText}>
+    <div className="container">
+      <form
+        onSubmit={(event) => {
+          submitHandler(event);
+        }}
+      >
         <div className={classes.textBox}>
           <input
+            id="textInput"
+            // className={classes.inputBar}
+
             type="text"
             onChange={(event) => {
+              // props.getText(event);
               newText(event);
             }}
           />
-          <FontAwesomeIcon icon={faPaperPlane} />
+          <button
+            className={classes.sendButton}
+            type="submit"
+            onSubmit={(event) => {
+              submitHandler(event);
+            }}
+          >
+            <FontAwesomeIcon icon={faPaperPlane} />
+          </button>
         </div>
       </form>
     </div>

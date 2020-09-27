@@ -1,16 +1,16 @@
 import React from "react";
 import ChatIndividual from "./ChatIndividual";
 
-function sideChatBar(props) {
+function SideChatBar(props) {
   return (
     <div>
       <ChatIndividual
         chatId={props.chatId}
-        getName={props.getName}
+        getId={props.getId}
         currUser={props.currUser}
       />
     </div>
   );
 }
 
-export default sideChatBar;
+export default SideChatBar;

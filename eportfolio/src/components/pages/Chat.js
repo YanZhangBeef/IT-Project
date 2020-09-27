@@ -11,6 +11,7 @@ export default function Chat(props) {
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ name: "", email: "" });
   const [chats, setChats] = useState([]);
+  const [selectedName, setSelectedName] = useState("");
 
   useEffect(() => {
     fetchUser().then((data) => setUser(data));
@@ -22,11 +23,17 @@ export default function Chat(props) {
     }
   }, [user]);
 
-  const openChatHandler = (name) => {
-    setSelected(name);
+  const openChatHandler = (id, name) => {
+    setSelected(id);
+    setSelectedName(name);
   };
+
+  // const getChatNameHandler = () => {
+
+  // }
+
   return (
-    <div>
+    <div className="container.fluid">
       <div className={classes.chat}>
         <div className={classes.sideChatBar}>
           {user ? <ChatScreenHeading name={user.name} /> : <p>loading...</p>}
@@ -38,7 +45,7 @@ export default function Chat(props) {
                   key={chatId}
                   chatId={chatId}
                   currUser={user.name}
-                  getName={openChatHandler}
+                  getId={openChatHandler}
                 />
               );
             })
@@ -48,8 +55,7 @@ export default function Chat(props) {
         </div>
 
         <div className={classes.chatScreen}>
-          <ChatScreen person={selected} />
-          {/* <SendText/> */}
+          <ChatScreen me={user} person={selected} name={selectedName} />
         </div>
       </div>
     </div>
