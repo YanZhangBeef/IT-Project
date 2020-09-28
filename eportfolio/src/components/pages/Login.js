@@ -31,7 +31,7 @@ const Login = (props) => {
   return (
     <div className="login-container">
       {user ? (
-        <Redirect to="/home" />
+        <Redirect to={"/profile/" + user.uid} />
       ) : (
         <div className="login shadow">
           <div className="login-method">

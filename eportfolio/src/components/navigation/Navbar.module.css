@@ -1,14 +1,14 @@
 .circle {
   width: 2.5rem;
   height: 2.5rem;
-  background: #87a4c7;
+  background: transparent;
   margin-right: 0.3rem;
   border-radius: 2rem;
   transition: ease 0.4s;
 }
 
 .circle:hover {
-  background: #a4c7f3;
+  background: #87a4c7;
 }
 
 .eporfo {
@@ -36,6 +36,7 @@
   -moz-box-shadow: none;
   box-shadow: none;
   color: white;
+  width: 100%;
 }
 
 .searchbarContainer:hover {
@@ -49,7 +50,8 @@
   color: white;
 }
 .iconsHolder {
-  max-width: 10rem;
+  flex-grow: 0 !important;
+  color: white;
 }
 .peopleIcon {
   margin-left: 0.72rem;
@@ -58,4 +60,9 @@
 .mailIcon {
   margin-left: 0.6rem;
   color: white;
+}
+
+.username {
+  white-space: nowrap;
+  overflow: hidden;
 }
