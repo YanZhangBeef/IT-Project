@@ -10,7 +10,7 @@ import {
 export default function Navbar(props) {
   return (
     
-    <nav className={`navbar navbar-expand-md navbar-light fixed-top  ${navbarStyles.navbar}`}>
+    <nav className={`navbar navbar-expand-md navbar-light ${navbarStyles.navbar}`}>
       <a class = "collapse navbar-collapse"style = {{marginLeft: "2rem", marginRight:"20rem", color:"white"}}>ePortfolio</a>
 
       {/**the search bar module*/}
