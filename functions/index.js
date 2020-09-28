@@ -11,8 +11,7 @@ const admin = require("firebase-admin");
 // });
 
 exports.initNewUser = functions.auth.user().onCreate((user) => {
-    // setup the database entries for a new user
-    //db.collection('users').doc(user.uid).set()
+    database.initializeUser(user.uid, user.displayName);
 })
 
 

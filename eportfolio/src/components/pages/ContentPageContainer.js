@@ -6,10 +6,11 @@ import {
   deleteContent,
   fetchContent,
   updateContent,
+  uploadThumbnail,
 } from "../../data/ProfileRepository";
 
 export default function ContentPageContainer(props) {
-  const [contentData, setContentData] = useState({});
+  const [contentData, setContentData] = useState({ artefacts: [] });
 
   const { contentId } = useParams();
   const history = useHistory();
@@ -31,9 +32,14 @@ export default function ContentPageContainer(props) {
     history.push(`/content/${contentId}`);
   };
 
+  const handleUpload = (file) => {
+    uploadThumbnail(contentId, file).then((data) => {
+      setContentData(Object.assign({}, contentData, data));
+    });
+  };
+
   useEffect(() => {
     fetchContent(contentId).then((data) => setContentData(data));
-    console.log("fetching new content data");
   }, [contentId]);
 
   return props.isEditing ? (
@@ -42,8 +48,13 @@ export default function ContentPageContainer(props) {
       handleSave={handleSave}
       handleDelete={handleDelete}
       handleCancel={handleCancel}
+      handleUpload={handleUpload}
     />
   ) : (
-    <ContentPage {...contentData} isEditable={true} />
+    <ContentPage
+      {...contentData}
+      isEditable={true}
+      handleUpload={handleUpload}
+    />
   );
 }

@@ -1,9 +1,43 @@
-.app-nav {
-  background: #3578c9;
-  color: #efefef;
-  font-weight: bolder;
+.circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgb(193, 189, 189);
+  margin-right: 0.3rem;
+  border-radius: 2rem;
+}
+.eporfo {
+  color: white;
+  margin-left: 2rem;
 }
 
-.link {
-  color: #efefef;
+.navbar {
+  background-color: #3578c9;
+  box-sizing: border-box;
+}
+
+.searchbarContainer {
+  background-color: #96bbe8;
+  margin-left: 5%;
+  width: 40rem;
+}
+.inputGroupPrepend {
+  margin-top: 0.8rem;
+  margin-left: 0.3rem;
+}
+.iconsHolder {
+  margin-left: 23%;
+  width: 13rem;
+}
+.peopleIcon {
+  margin-left: 0.72rem;
+  color: white;
+}
+.mailIcon {
+  margin-left: 0.6rem;
+  color: white;
+}
+
+.outerNav {
+  position: relative;
+  margin-bottom: 4rem;
 }

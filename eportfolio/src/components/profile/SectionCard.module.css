@@ -7,9 +7,6 @@
 }
 
 .section-image {
-  width: 12rem;
-  height: 6rem;
-  background: #c4c4c4;
   flex-shrink: 0;
 }
 
