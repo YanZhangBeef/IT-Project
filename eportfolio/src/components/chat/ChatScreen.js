@@ -65,9 +65,14 @@ export default function ChatScreen(props) {
     if (props.person) {
       setConvo(...convo, newText);
 
+      let upload = newText.message;
+      if (newText.message.length > 40) {
+        upload = newText.message.substring(0, 40) + "...";
+      }
+
       let lastMessage = {
         title: "idk",
-        lastMessage: newText.message.substring(0, 40),
+        lastMessage: upload,
       };
       chatsRef = rdb.ref("/chats/" + props.person);
       chatsRef.set(lastMessage);
