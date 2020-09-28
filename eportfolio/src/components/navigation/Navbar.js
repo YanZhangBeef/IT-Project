@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, createRef } from "react";
 import firebase from "firebase/app";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Navbar.module.css";
+import { withRouter } from "react-router-dom";
 import {
   faEnvelope,
   faUser,
@@ -9,14 +10,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-export default function Navbar(props) {
+function Navbar(props) {
   // should change this to a prop once chat is integrated
   const [user, setUser] = useState(null);
+  const query = createRef();
+
+  function handleChange(e) {
+    props.history.push({ pathname: "/search", state: query.current.value });
+  }
 
   useEffect(() => {
     const unlisten = firebase.auth().onAuthStateChanged((user) => {
       user ? setUser(user) : setUser(null);
-      console.log(user);
     });
     return () => {
       unlisten();
@@ -48,6 +53,8 @@ export default function Navbar(props) {
           className={`m-1 ${styles.searchBar}`}
           placeholder="Search for projects"
           aria-describedby="basic-addon1"
+          onChange={handleChange}
+          ref={query}
         />
       </div>
 
@@ -57,7 +64,7 @@ export default function Navbar(props) {
         <div className="d-flex align-items-center">
           {user != null && (
             <div className={styles.circle}>
-              <a class="navbar-brand" href="/chat">
+              <a className="navbar-brand" href="/chat">
                 <FontAwesomeIcon
                   icon={faEnvelope}
                   className={`${styles.mailIcon}`}
@@ -71,12 +78,12 @@ export default function Navbar(props) {
             <div className="d-flex align-items-center">
               <div className={styles.circle}>
                 <Link to={"/profile/" + user.uid}>
-                  <a class="navbar-brand" href="/">
+                  <div className="navbar-brand">
                     <FontAwesomeIcon
                       icon={faUser}
                       className={`${styles.peopleIcon}`}
                     />
-                  </a>
+                  </div>
                 </Link>
               </div>
               <div className={"mr-4 font-weight-bold " + styles.username}>
@@ -87,12 +94,12 @@ export default function Navbar(props) {
           {/**log in button */}
           {user == null ? (
             <Link to="/login">
-              <a class="btn btn-outline-light" role="button">
+              <div className="btn btn-outline-light" role="button">
                 Login
-              </a>
+              </div>
             </Link>
           ) : (
-            <a class="btn btn-outline-light" onClick={logout} role="button">
+            <a className="btn btn-outline-light" onClick={logout} role="button">
               Logout
             </a>
           )}
@@ -101,3 +108,5 @@ export default function Navbar(props) {
     </nav>
   );
 }
+
+export default withRouter(Navbar);

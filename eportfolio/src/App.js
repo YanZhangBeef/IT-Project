@@ -7,15 +7,20 @@ import ContentPageContainer from "./components/pages/ContentPageContainer";
 import CreateContentPageContainer from "./components/pages/CreateContentPageContainer";
 import ProfilePageContainer from "./components/pages/ProfilePageContainer";
 import SearchPage from "./components/pages/SearchPage";
+import MoreSearchResults from "./components/pages/MoreSearchResults";
 import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-
+import { Provider } from "react-redux";
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
 import Chat from "./components/pages/Chat";
+
+const test = () => {
+  console.log("works");
+};
 
 function App() {
   return (
@@ -43,8 +48,12 @@ function App() {
           <ProfilePage {...fakeProfile} />
         </Route>
         <Route exact path="/chat" component={Chat} />
-        <Route path="/search">
-          <SearchPage {...fakeProfile} />
+        <Route exact path="/search">
+          <SearchPage />
+        </Route>
+
+        <Route exact path="/results">
+          <MoreSearchResults />
         </Route>
 
         <Route exact path="/login" component={Login} />
