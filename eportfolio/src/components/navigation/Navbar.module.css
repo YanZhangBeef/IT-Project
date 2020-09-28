@@ -1,42 +1,61 @@
-.circle{
-    width: 2.5rem;
-    height: 2.5rem;
-    background: rgb(193, 189, 189);
-    margin-right: 0.3rem;
-    border-radius: 2rem;
- 
-}
-.eporfo{
-    color: white;
-    margin-left:2rem;
+.circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #87a4c7;
+  margin-right: 0.3rem;
+  border-radius: 2rem;
+  transition: ease 0.4s;
 }
 
-.navbar{
-    background-color: #3578C9;
-    box-sizing: border-box;
+.circle:hover {
+  background: #a4c7f3;
 }
 
-.searchbarContainer{
-    background-Color: #96bbe8;
-    margin-Left: 5%;
-    width: 40rem;
+.eporfo {
+  color: white;
+  margin-left: 2rem;
+}
 
+.navbar {
+  background: #3578c9;
 }
-.inputGroupPrepend{
-    margin-top: 0.8rem;
-    margin-left: 0.3rem;
 
+.searchbarContainer {
+  flex-grow: 0.2;
+  font-size: 1.1rem;
+
+  background: #739fd4;
+  transition: ease 0.4s;
+  border-radius: 1rem;
 }
-.iconsHolder{
-    margin-left: 23%;
-    width:13rem;
-    
+
+.searchBar {
+  background: none;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: white;
 }
-.peopleIcon{
-    margin-left: 0.72rem;
-    color: white;
+
+.searchbarContainer:hover {
+  background: #88beff;
+  transform: scale(1.1);
+  border-radius: 0.5rem;
 }
-.mailIcon{
-    margin-left: 0.6rem;
-    color: white;
+
+.inputGroupPrepend {
+  z-index: 2;
+  color: white;
+}
+.iconsHolder {
+  max-width: 10rem;
+}
+.peopleIcon {
+  margin-left: 0.72rem;
+  color: white;
+}
+.mailIcon {
+  margin-left: 0.6rem;
+  color: white;
 }
