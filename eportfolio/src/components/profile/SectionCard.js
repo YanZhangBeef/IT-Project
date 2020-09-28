@@ -30,7 +30,7 @@ export default function SectionCard(props) {
   const nComments = (item) => 0;
 
   return (
-    <div className={`${styles["sectionCard"]} shadow p-4 mt-5`}>
+    <div className={`${styles["section-card"]} shadow p-4 mt-5`}>
       <div className="d-flex align-items-center">
         <h5>{props.title}</h5>
         {props.isEditable && (

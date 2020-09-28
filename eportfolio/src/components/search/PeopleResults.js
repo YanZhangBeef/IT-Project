@@ -35,7 +35,12 @@ function PeopleResults(props) {
           {userData.repos
             .filter((user, idx) => idx < 3)
             .map(({ objectID, ...user }) => (
-              <ProfileCard key={objectID} {...user} />
+              <ProfileCard
+                key={objectID}
+                {...user}
+                userId={objectID}
+                showViewProfileBtn={true}
+              />
             ))}
         </div>
 
