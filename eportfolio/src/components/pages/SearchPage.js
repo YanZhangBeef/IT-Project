@@ -12,24 +12,20 @@ const SearchPage = (props) => {
     }
   }, [props.history.location.state]);
 
-  if (query == "") {
-    return <div>Use the search bar</div>;
+  if (query == null) {
+    return (
+      <div className="my-3 mx-3">
+        <h1>Please type in the search bar above...</h1>
+      </div>
+    );
   } else {
     return (
       <div className="container my-3">
         <h1 className={`${classes.title} mt-5`}>People</h1>
-
         <PeopleResults query={query} />
-        <div className={`${classes.more} mt-4`}>
-          <p>Load more people</p>
-          <hr className="mt-2"></hr>
-        </div>
+
         <h1 className={`${classes.title} mt-5`}>Projects and experience</h1>
         <ProjectResults query={query} />
-        <div className={`${classes.more} mt-4`}>
-          <p>Load more project</p>
-          <hr className="mt-2"></hr>
-        </div>
       </div>
     );
   }

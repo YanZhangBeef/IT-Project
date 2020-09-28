@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
@@ -7,6 +7,7 @@ import ContentPageContainer from "./components/pages/ContentPageContainer";
 import CreateContentPageContainer from "./components/pages/CreateContentPageContainer";
 import ProfilePageContainer from "./components/pages/ProfilePageContainer";
 import SearchPage from "./components/pages/SearchPage";
+import MoreSearchResults from "./components/pages/MoreSearchResults";
 import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
@@ -22,22 +23,9 @@ const test = () => {
 };
 
 function App() {
-  /* hook for search functionalities */
-  const [query, setQuery] = useState([]);
-
-  const setData = async (val) => {
-    console.log(val);
-    if (val) {
-      setQuery(val);
-    }
-  };
-  useEffect(() => {
-    console.log("Effect does this:" + query);
-  });
-
   return (
     <React.Fragment>
-      <Navbar func={setData} />
+      <Navbar />
 
       <Switch>
         <Route path="/newContent/:userId/:sectionId">
@@ -60,8 +48,12 @@ function App() {
           <ProfilePage {...fakeProfile} />
         </Route>
         <Route exact path="/chat" component={Chat} />
-        <Route path="/search">
-          <SearchPage data={query} />
+        <Route exact path="/search">
+          <SearchPage />
+        </Route>
+
+        <Route exact path="/results">
+          <MoreSearchResults />
         </Route>
 
         <Route exact path="/login" component={Login} />
