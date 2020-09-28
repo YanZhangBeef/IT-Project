@@ -11,7 +11,7 @@ import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-
+import Vhome from "./components/pages/vhome"
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
@@ -46,7 +46,7 @@ function App() {
         <Route path="/search">
           <SearchPage {...fakeProfile} />
         </Route>
-
+        <Route exact path="/vhome" component={Vhome} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
       </Switch>

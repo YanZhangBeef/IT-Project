@@ -1,6 +1,5 @@
 import React from "react";
 import hompageStyle from "./vhome.module.css"
-import "./ProfilePage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 faBriefcase,
@@ -16,7 +15,7 @@ export default function vhome(props) {
       {/**the full beach width picture  */}
       <div className = {hompageStyle.home}>
         <div className = {hompageStyle.landingtext}> 
-          <h1 className = {hompageStyle.hometext}>5 Head ePortfolio</h1>
+          <h1 className = {hompageStyle.hometext}>5 Heads ePortfolio</h1>
           <br></br>
 
           {/**the buttom  */}
