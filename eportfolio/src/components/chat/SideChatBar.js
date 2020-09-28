@@ -1,9 +1,10 @@
 import React from "react";
 import ChatIndividual from "./ChatIndividual";
+import classes from "./SideChatBar.module.css";
 
 function SideChatBar(props) {
   return (
-    <div>
+    <div className={classes.scroll}>
       <ChatIndividual
         chatId={props.chatId}
         getId={props.getId}

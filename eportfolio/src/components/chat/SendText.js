@@ -34,11 +34,9 @@ export default function SendText(props) {
         <div className={classes.textBox}>
           <input
             id="textInput"
-            // className={classes.inputBar}
-
             type="text"
+            placeholder="Send a message..."
             onChange={(event) => {
-              // props.getText(event);
               newText(event);
             }}
           />

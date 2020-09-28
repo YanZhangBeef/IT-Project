@@ -1,7 +1,7 @@
 .textBox {
   width: 60rem;
   position: fixed;
-  bottom: 5px;
+  bottom: 0.2rem;
   margin: 1rem 1rem;
 }
 
@@ -12,6 +12,7 @@
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
+
 .textBox Button {
   margin-left: 1rem;
   background-color: white;

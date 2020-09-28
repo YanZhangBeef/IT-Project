@@ -9,14 +9,12 @@ import { rdb } from "../../data/firebase";
 export default function ChatScreen(props) {
   const [convo, setConvo] = useState([]);
   const [newText, setNewText] = useState("");
-  const [member, setNewMember] = useState([]);
 
   const myChat = props.me.name;
-  // let ref = rdb.ref("/messages");
+
   let ref;
   let sendRef;
   let allChat;
-  let getMember;
   let temp = null;
   let chatsRef;
   const chatSelect = "Open a conversation";
@@ -27,34 +25,24 @@ export default function ChatScreen(props) {
       ref = rdb.ref("/messages/" + props.person);
       ref.on("value", gotData);
     }
-
-    // if(props.person){
-    //   getMember= rdb.ref('/members/'+ props.person);
-    //   getMember.on("value", (members)=>{
-    //     let temp= members.val();
-    //     setNewMember(temp);
-    //     console.log(temp);
-    //   })
-
-    // }
     return () => {};
   }, [props.person]);
 
+  useEffect(() => {
+    scrollToEnd();
+
+    return () => {};
+  }, [convo, scrollToEnd]);
+
   function gotData(data) {
-    // allChat = data.val();
-    // console.log(allChat);
     if (props.person) {
       allChat = data.val();
       temp = allChat;
-
-      console.log(allChat);
-      // temp = allChat[props.person];
       let newStuff = Object.values(temp);
       setConvo(newStuff);
     }
   }
 
-  //need to change this a bit as well
   let getTextHandler = (message) => {
     let currTime = new Date();
     let text = {
@@ -65,29 +53,38 @@ export default function ChatScreen(props) {
     setNewText(text);
   };
 
+  function scrollToEnd() {
+    if (props.person) {
+      let messageBody = document.getElementById("chatList");
+      messageBody.scrollTop =
+        messageBody.scrollHeight - messageBody.clientHeight;
+    }
+  }
+
   const sendTextHandler = () => {
     if (props.person) {
       setConvo(...convo, newText);
 
-      let lastMessage = { title: "idk", lastMessage: newText.message };
+      let lastMessage = {
+        title: "idk",
+        lastMessage: newText.message.substring(0, 40),
+      };
       chatsRef = rdb.ref("/chats/" + props.person);
       chatsRef.set(lastMessage);
 
       sendRef = rdb.ref("/messages/" + props.person);
       sendRef.push(newText);
-      {
-        console.log(props.me);
-      }
     }
   };
 
   return (
     <div className="container.fluid">
       <ChatScreenHeading name={props.person ? props.name : chatSelect} />
-      <div className={classes.scroll}>
-        {convo.map((message) => {
+      <div className={classes.scroll} id="chatList">
+        {convo.map((message, i) => {
           return (
             <Message
+              key={i}
               myMessage={message.name.name === myChat}
               data={message.message}
               author={message.name}
@@ -97,10 +94,12 @@ export default function ChatScreen(props) {
       </div>
 
       <div className={classes.textBox}>
-        <SendText
-          sendText={sendTextHandler}
-          getText={(event) => getTextHandler(event)}
-        />
+        {props.person ? (
+          <SendText
+            sendText={sendTextHandler}
+            getText={(event) => getTextHandler(event)}
+          />
+        ) : null}
       </div>
     </div>
   );

@@ -19,16 +19,10 @@
 }
 
 .other .bubbleContainer .bubble {
-  /* margin: 1px 0px; */
-
-  /* padding: 10px 15px; */
-  /* border-radius: 20px; */
-  /* max-width: 75%;
-  /* border-radius: 20px; */
   background: #f4f4f8;
   padding: 1rem 1rem;
   margin: 1rem 1rem;
-  max-width: 50rem;
+  max-width: 40rem;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   border-top-right-radius: 1rem;
@@ -43,7 +37,7 @@
   padding: 1rem 1rem;
   margin: 1rem 1rem;
   /* border-radius: 20px; */
-  max-width: 50rem;
+  max-width: 40rem;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   border-top-right-radius: 1rem;
