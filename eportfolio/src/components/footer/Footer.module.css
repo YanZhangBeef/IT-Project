@@ -1,0 +1,13 @@
+.footer{
+    background-color: #3578C9;
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+.footertext{
+    color: white;
+    padding-top: 0.5rem;
+}
