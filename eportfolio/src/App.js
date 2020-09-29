@@ -58,12 +58,14 @@ function App() {
         <Route exact path="/">
           <ProfilePage {...fakeProfile} />
         </Route>
+        <Route exact path="/chat" component={Chat} />
         <AuthRoute
           exact
           path="/chat"
           authenticated={authenticated}
           component={Chat}
         />
+        {/* <Route path="/search"> */}
 
         <Route exact path="/search">
           <SearchPage />

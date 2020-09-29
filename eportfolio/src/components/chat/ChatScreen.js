@@ -10,7 +10,7 @@ export default function ChatScreen(props) {
   const [convo, setConvo] = useState([]);
   const [newText, setNewText] = useState("");
 
-  const myChat = props.me.name;
+  const myChat = null; //props.me.name;
 
   let ref;
   let sendRef;

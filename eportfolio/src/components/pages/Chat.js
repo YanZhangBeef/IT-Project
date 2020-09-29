@@ -28,10 +28,6 @@ export default function Chat(props) {
     setSelectedName(name);
   };
 
-  // const getChatNameHandler = () => {
-
-  // }
-
   return (
     <div className="container.fluid">
       <div className={classes.chat}>
