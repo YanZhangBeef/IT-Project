@@ -1,53 +1,112 @@
-import React from "react";
+import React, { useState, useEffect, useCallback, createRef } from "react";
+import firebase from "firebase/app";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import navbarStyles from './Navbar.module.css';
+import styles from "./Navbar.module.css";
+import { withRouter } from "react-router-dom";
 import {
-  faMailBulk,
+  faEnvelope,
   faUser,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-export default function Navbar(props) {
+function Navbar(props) {
+  // should change this to a prop once chat is integrated
+  const [user, setUser] = useState(null);
+  const query = createRef();
+
+  function handleChange(e) {
+    props.history.push({ pathname: "/search", state: query.current.value });
+  }
+
+  useEffect(() => {
+    const unlisten = firebase.auth().onAuthStateChanged((user) => {
+      user ? setUser(user) : setUser(null);
+    });
+    return () => {
+      unlisten();
+    };
+  }, []);
+
+  const logout = () => {
+    firebase.auth().signOut();
+  };
+
   return (
-    
-    <nav className={`navbar navbar-expand-md navbar-light ${navbarStyles.navbar}`}>
-      <a class = "collapse navbar-collapse"style = {{marginLeft: "2rem", marginRight:"20rem", color:"white"}}>ePortfolio</a>
+    <nav
+      className={`navbar navbar-dark navbar-expand-md justify-content-between navbar-light ${styles.navbar}`}
+    >
+      <a className="navbar-brand">ePortfolio</a>
 
       {/**the search bar module*/}
-      <div className={`d-flex align-items-center" ${navbarStyles.searchbarContainer}`}>
-        <form class="form-inline">
-          <div class="input-group">
-            
-            {/**search icon */}
-            <div  className={`input-group-prepend ${navbarStyles.inputGroupPrepend}`}>
-              <FontAwesomeIcon icon={ faSearch}/>
-            </div>
+      <div
+        className={`d-flex align-items-center mx-auto ${styles.searchbarContainer}`}
+      >
+        {/**search icon */}
+        <div className={`mx-2 ${styles.inputGroupPrepend}`}>
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
 
-            {/**search input */}
-            <input type="text" class="form-control" 
-            style = {{border: "0ch", backgroundColor: "#96bbe8"}}
-            placeholder="search from students" 
-            aria-describedby="basic-addon1"/>
-          </div>
-        </form>
-    </div>
+        {/**search input */}
+        <input
+          type="text"
+          className={`m-1 ${styles.searchBar}`}
+          placeholder="Search for projects"
+          aria-describedby="basic-addon1"
+          onChange={handleChange}
+          ref={query}
+        />
+      </div>
 
       {/**Icon module*/}
-      <a className={`collapse navbar-collapse ${navbarStyles.iconsHolder}`}>
+      <div className={`collapse navbar-collapse ${styles.iconsHolder}`}>
         {/**Mail Icon*/}
-        <div class="d-flex align-items-center">
-          <div className = {navbarStyles.circle}>
-            <a class="navbar-brand" href="/chat" ><FontAwesomeIcon icon={faMailBulk} className={`${navbarStyles.mailIcon}`}/></a> 
-          </div>
+        <div className="d-flex align-items-center">
+          {user != null && (
+            <div className={styles.circle}>
+              <a className="navbar-brand" href="/chat">
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className={`${styles.mailIcon}`}
+                />
+              </a>
+            </div>
+          )}
 
           {/**User Icon*/}
-          <div className = {navbarStyles.circle}>
-            <a class="navbar-brand" href="/"><FontAwesomeIcon icon={ faUser} className={`${navbarStyles.peopleIcon}`} /></a>
-          </div>
+          {user != null && (
+            <div className="d-flex align-items-center">
+              <div className={styles.circle}>
+                <Link to={"/profile/" + user.uid}>
+                  <div className="navbar-brand">
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className={`${styles.peopleIcon}`}
+                    />
+                  </div>
+                </Link>
+              </div>
+              <div className={"mr-4 font-weight-bold " + styles.username}>
+                {user.displayName}
+              </div>
+            </div>
+          )}
           {/**log in button */}
-          <a class="btn btn-outline-light" href="/login" role="button">login</a>
+          {user == null ? (
+            <Link to="/login">
+              <div className="btn btn-outline-light" role="button">
+                Login
+              </div>
+            </Link>
+          ) : (
+            <a className="btn btn-outline-light" onClick={logout} role="button">
+              Logout
+            </a>
+          )}
         </div>
-      </a>
+      </div>
     </nav>
-  )
+  );
 }
+
+export default withRouter(Navbar);
