@@ -22,7 +22,7 @@ const Login = (props) => {
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
-    return <Redirect to="/home" />;
+    return <Redirect to={`/profile/${currentUser.uid}`} />;
   }
   return (
     <div className={styles["login-container"]}>
