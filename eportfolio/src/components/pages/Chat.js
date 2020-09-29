@@ -18,7 +18,8 @@ export default function Chat(props) {
 
   useEffect(() => {
     fetchUser().then((data) => setUser(data));
-  }, []);
+    console.log(user);
+  }, [user]);
 
   useEffect(() => {
     if (user.uid) {

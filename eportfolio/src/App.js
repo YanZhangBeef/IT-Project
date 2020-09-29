@@ -25,30 +25,34 @@ const test = () => {
 };
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const unlisten = auth().onAuthStateChanged((user) => {
-      user ? setAuthenticated(true) : setAuthenticated(false);
-    });
-    return () => {
-      unlisten();
-    };
-  }, []);
+    let user = auth().currentUser;
+    console.log("user-" + user);
+
+    //const unlisten = auth().onAuthStateChanged((user) => {
+    user ? setUser(user) : setUser(null);
+    // console.log("authenticated-"+authenticated);
+    //});
+    // return () => {
+    //   unlisten();
+    // };
+  }, [user]);
   return (
     <React.Fragment>
       <Navbar />
       <Switch>
-        <Route path="/newContent/:userId/:sectionId">
+        <Route exact path="/newContent/:userId/:sectionId">
           <CreateContentPageContainer />
         </Route>
-        <Route path="/editContent/:contentId">
+        <Route exact path="/editContent/:contentId">
           <ContentPageContainer isEditing={true} />
         </Route>
-        <Route path="/content/:contentId">
+        <Route exact path="/content/:contentId">
           <ContentPageContainer />
         </Route>
-        <Route path="/profile/:userId">
+        <Route exact path="/profile/:userId">
           <ProfilePageContainer />
         </Route>
         <Route exact path="/content">
@@ -58,13 +62,8 @@ function App() {
         <Route exact path="/">
           <ProfilePage {...fakeProfile} />
         </Route>
-        <Route exact path="/chat" component={Chat} />
-        <AuthRoute
-          exact
-          path="/chat"
-          authenticated={authenticated}
-          component={Chat}
-        />
+
+        <AuthRoute exact path="/chat" authenticated={user} component={Chat} />
         {/* <Route path="/search"> */}
 
         <Route exact path="/search">

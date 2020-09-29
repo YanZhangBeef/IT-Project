@@ -6,7 +6,7 @@ function AuthRoute({ component: Component, authenticated, ...rest }) {
     <Route
       {...rest}
       render={(props) =>
-        authenticated === true ? (
+        authenticated ? (
           <Component {...props} />
         ) : (
           <Redirect to={{ pathname: "/login" }} />
