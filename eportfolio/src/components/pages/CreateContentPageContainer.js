@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { createContent, fetchProfile } from "../../data/ProfileRepository";
 
 export default function CreateContentPageContainer(props) {
-  const [profileData, setProfileData] = useState({});
+  const [profileData, setProfileData] = useState({ artefacts: [] });
 
   const { userId, sectionId } = useParams();
   const history = useHistory();
@@ -21,7 +21,9 @@ export default function CreateContentPageContainer(props) {
   };
 
   useEffect(() => {
-    fetchProfile(userId).then((data) => setProfileData(data));
+    fetchProfile(userId).then((data) =>
+      setProfileData({ ...data, artefacts: [] })
+    );
   }, [userId]);
 
   return (

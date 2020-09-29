@@ -1,25 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProjectResults from "../search/ProjectResults";
 import PeopleResults from "../search/PeopleResults";
-import "./SearchPage.css";
+import classes from "./Search.module.css";
+import { withRouter } from "react-router-dom";
 
-const search = () => (
-  <div class="container">
-    <h1>People</h1>
+const SearchPage = (props) => {
+  const [query, setQuery] = useState(null);
+  useEffect(() => {
+    if (props.history.location.state) {
+      setQuery(props.history.location.state);
+    }
+  }, [props.history.location.state]);
 
-    <PeopleResults />
-    <div className="more mt-3">
-      <p>Load more projects</p>
-      <hr></hr>
-    </div>
-    <h1>Projects</h1>
+  if (query == null) {
+    return (
+      <div className="my-3 mx-3">
+        <h1>Please type in the search bar above...</h1>
+      </div>
+    );
+  } else {
+    return (
+      <div className="container my-3">
+        <h1 className={`${classes.title} mt-5`}>People</h1>
+        <PeopleResults query={query} />
 
-    <ProjectResults />
-    <div className="more">
-      <p>Load more people</p>
-      <hr></hr>
-    </div>
-  </div>
-);
+        <h1 className={`${classes.title} mt-5`}>Projects and experience</h1>
+        <ProjectResults query={query} />
+      </div>
+    );
+  }
+};
 
-export default search;
+export default withRouter(SearchPage);

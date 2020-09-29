@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ArtefactSectionContainer from "../artefact/ArtefactSectionContainer";
+import ProfileImage from "../profile/ProfileImage";
+import Thumbnail from "../profile/Thumbnail";
 
 import styles from "./ContentPage.module.css";
 
@@ -39,13 +42,23 @@ export default function EditContentPage(props) {
         )}
       </div>
 
-      <div className="row m-1 mb-3">
-        <span>{props.displayName}</span>
-      </div>
+      <Link to={"/profile/" + props.userId}>
+        <div className="d-flex align-items-center m-1 mb-3">
+          <div className="mr-3">
+            <ProfileImage
+              thumbnailUrl={props.profilePictureUrl}
+              height="3rem"
+              width="3rem"
+            />
+          </div>
+          <span className={styles.displayName}>{props.displayName}</span>
+        </div>
+      </Link>
 
-      <img
-        className={`${styles["content-image"]} m-1`}
-        src="https://images.unsplash.com/photo-1563805042-7684c019e1cb"
+      <Thumbnail
+        isEditable={!props.isNewPage}
+        handleUpload={props.handleUpload}
+        thumbnailUrl={props.thumbnailUrl}
       />
 
       <textarea
@@ -55,8 +68,11 @@ export default function EditContentPage(props) {
         onChange={(e) => setDescription(e.target.value)}
       />
 
-      <h2 className="m-1">Artefacts</h2>
-      <div className="m-1 my-5">Nothing to see here</div>
+      <ArtefactSectionContainer
+        isEditable={true}
+        artefactIds={props.artefacts}
+        contentId={props.contentId}
+      />
       <h2 className="m-1">Comments</h2>
       <div className="m-1 my-5">Be the first to comment.</div>
     </div>
