@@ -4,12 +4,20 @@ import styles from "./ProfileCard.module.css";
 import cardStyles from "./SectionCard.module.css";
 
 import { EditableTextArea, EditableTextField } from "./EditableTextArea";
+import ProfileImage from "./ProfileImage";
+import { Link } from "react-router-dom";
 
 export default function ProfileCard(props) {
   return (
     <div className={`${cardStyles["section-card"]} shadow p-4 mt-5`}>
       <div className={`${styles["profile"]} my-2 mb-4`}>
-        <div className={`${styles["profile-image"]} mr-5`}></div>
+        <div className="mr-5">
+          <ProfileImage
+            isEditable={props.isEditable}
+            handleUpload={props.handleUpload}
+            thumbnailUrl={props.profilePictureUrl}
+          />
+        </div>
         <div className={`${styles["profile-content"]}`}>
           <h1 className={styles["profile-name"]}>{props.displayName}</h1>
           <EditableTextField
@@ -22,6 +30,14 @@ export default function ProfileCard(props) {
         <div className={`${styles["profile-message"]} ml-auto`}>
           <button className="btn btn-primary">Message</button>
         </div>
+
+        {props.showViewProfileBtn && (
+          <div className={`${styles["profile-message"]} ml-2`}>
+            <Link to={"/profile/" + props.userId}>
+              <button className="btn btn-primary">View profile</button>
+            </Link>
+          </div>
+        )}
       </div>
       <hr />
       <EditableTextArea
