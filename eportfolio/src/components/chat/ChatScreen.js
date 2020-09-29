@@ -84,7 +84,10 @@ export default function ChatScreen(props) {
 
   return (
     <div className="container.fluid">
-      <ChatScreenHeading name={props.person ? props.name : chatSelect} />
+      <ChatScreenHeading
+        name={props.person ? props.name : chatSelect}
+        profileImg={props.image}
+      />
       <div className={classes.scroll} id="chatList">
         {convo.map((message, i) => {
           return (

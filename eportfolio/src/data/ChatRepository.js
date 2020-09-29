@@ -1,11 +1,13 @@
 import { rdb, db, auth } from "./firebase";
 
-export async function fetchChat(handle) {
+export async function fetchDetails(handle) {
   try {
     const content = await db.collection("users").doc(handle).get();
     const contentData = content.data();
+    const chats = contentData.chats;
+    const profileImg = contentData.profileImg;
 
-    return contentData.chats;
+    return Object.assign({}, { chats: chats, profileImg: profileImg });
   } catch (e) {
     console.log(e);
   }
@@ -25,12 +27,33 @@ export async function fetchUser() {
 export async function fetchChatName(currUser, chatId) {
   try {
     const data = await rdb.ref(`/members/${chatId}`).once("value");
-    let members = Object.getOwnPropertyNames(data.val());
-    let filtered = members.filter(function (member, index, arr) {
-      return member !== currUser;
-    });
-    return filtered;
+
+    let result = { users: [], uid: [] },
+      key;
+    for (key in data.val()) {
+      if (key !== currUser) {
+        result.users.push(key);
+        result.uid.push(data.val()[key]);
+      }
+    }
+    return result;
   } catch (e) {
     console.log(e);
+  }
+}
+
+export async function fetchChatImage(uids) {
+  if (uids.length === 1) {
+    try {
+      const content = await db.collection("users").doc(uids[0]).get();
+      const contentData = content.data();
+      const profileImg = contentData.profileImg;
+
+      return profileImg;
+    } catch (e) {
+      console.log(e);
+    }
+  } else {
+    return "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media";
   }
 }
