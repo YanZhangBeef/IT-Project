@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchUser, fetchChat } from "../../data/ChatRepository";
+import { fetchUser, fetchDetails } from "../../data/ChatRepository";
 
 import SideChatBar from "../chat/SideChatBar";
 import ChatScreen from "../chat/ChatScreen";
@@ -9,9 +9,12 @@ import ChatScreenHeading from "../chat/ChatScreenHeading";
 
 export default function Chat(props) {
   const [selected, setSelected] = useState("");
-  const [user, setUser] = useState({ name: "", email: "" });
-  const [chats, setChats] = useState([]);
+  const [user, setUser] = useState({ name: "", uid: "" });
+  const [details, setDetails] = useState({ chats: [], profileImg: "" });
   const [selectedName, setSelectedName] = useState("");
+  const [selectedImage, setSelectedImage] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media"
+  );
 
   useEffect(() => {
     fetchUser().then((data) => setUser(data));
@@ -19,23 +22,31 @@ export default function Chat(props) {
 
   useEffect(() => {
     if (user.uid) {
-      fetchChat(user.uid).then((data) => setChats(data));
+      fetchDetails(user.uid).then((data) => setDetails(data));
     }
   }, [user]);
 
-  const openChatHandler = (id, name) => {
+  const openChatHandler = (id, name, image) => {
     setSelected(id);
     setSelectedName(name);
+    setSelectedImage(image);
   };
 
   return (
     <div className="container.fluid">
       <div className={classes.chat}>
         <div className={classes.sideChatBar}>
-          {user ? <ChatScreenHeading name={user.name} /> : <p>loading...</p>}
+          {user ? (
+            <ChatScreenHeading
+              name={user.name}
+              profileImg={details.profileImg}
+            />
+          ) : (
+            <p>loading...</p>
+          )}
 
-          {chats ? (
-            chats.map((chatId) => {
+          {details ? (
+            details.chats.map((chatId) => {
               return (
                 <SideChatBar
                   key={chatId}
@@ -51,7 +62,12 @@ export default function Chat(props) {
         </div>
 
         <div className={classes.chatScreen}>
-          <ChatScreen me={user} person={selected} name={selectedName} />
+          <ChatScreen
+            me={user}
+            person={selected}
+            name={selectedName}
+            image={selectedImage}
+          />
         </div>
       </div>
     </div>
