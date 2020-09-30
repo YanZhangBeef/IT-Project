@@ -55,9 +55,11 @@ function App() {
           <MoreSearchResults />
         </Route>
         <Route exact path="/login" component={Login} />
-        <Route path="/" component={Vhome} /> // must be the last element
+        <Route path="/">
+          <Vhome />
+          <Footer />
+        </Route>
       </Switch>
-      <Footer/>
     </React.Fragment>
   );
 }
