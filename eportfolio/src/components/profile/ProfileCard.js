@@ -26,15 +26,11 @@ export default function ProfileCard(props) {
       const myContentData = myContent.data();
       const myChats = myContentData.chats;
 
-      const otherContent = await db.collection("users").doc(otherId).get();
-      const otherContentData = otherContent.data();
-      const othersChat = otherContentData.chats;
-
       const newChatId = myId + otherId;
       const newChatId2 = otherId + myId;
 
       //if any form not already present
-      if (!myChats.includes(newChatId) || !myChats.includes(newChatId2)) {
+      if (!myChats.includes(newChatId) && !myChats.includes(newChatId2)) {
         //updating chats array in firestory
         db.collection("users")
           .doc(myId)

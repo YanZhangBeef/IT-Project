@@ -40,7 +40,7 @@ function ChatIndividual(props) {
         </h2>
         <p className={classes.individualConvo}>
           {" "}
-          {lastMessage ? lastMessage : "loading"}
+          {lastMessage ? lastMessage : "start chatting !"}
         </p>
       </div>
     </div>
