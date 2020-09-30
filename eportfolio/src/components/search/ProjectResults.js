@@ -10,22 +10,21 @@ const moreStyle = {
 
 function ProjectResults(props) {
   const [sectionData, setSectionData] = useState({
-    loading: false,
     repos: null,
   });
 
   useEffect(() => {
-    setSectionData({ loading: true });
     sectionSearch(props.query).then((res) => {
-      setSectionData({ loading: false, repos: res });
+      setSectionData({ repos: res });
     });
   }, [props.query]);
 
   if (sectionData.repos == null) {
-    /* no profile found yet */
+    return <div></div>;
+  } else if (sectionData.repos.length === 0) {
     return (
       <div>
-        <h1>No profile found</h1>
+        <h1>No project found</h1>
       </div>
     );
   } else {
@@ -47,7 +46,6 @@ function ProjectResults(props) {
           >
             <p>Load more projects</p>{" "}
           </Link>
-          <hr className="mt-2"></hr>
           <hr className="mt-2"></hr>
         </div>
       </div>
