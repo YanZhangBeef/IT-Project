@@ -5,6 +5,7 @@ import cardStyles from "./SectionCard.module.css";
 
 import { EditableTextArea, EditableTextField } from "./EditableTextArea";
 import ProfileImage from "./ProfileImage";
+import { Link } from "react-router-dom";
 
 export default function ProfileCard(props) {
   return (
@@ -29,6 +30,14 @@ export default function ProfileCard(props) {
         <div className={`${styles["profile-message"]} ml-auto`}>
           <button className="btn btn-primary">Message</button>
         </div>
+
+        {props.showViewProfileBtn && (
+          <div className={`${styles["profile-message"]} ml-2`}>
+            <Link to={"/profile/" + props.userId}>
+              <button className="btn btn-primary">View profile</button>
+            </Link>
+          </div>
+        )}
       </div>
       <hr />
       <EditableTextArea

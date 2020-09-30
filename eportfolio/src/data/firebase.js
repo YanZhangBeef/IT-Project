@@ -13,9 +13,9 @@ firebase.initializeApp({
 export const db = firebase.firestore();
 export const storage = firebase.storage();
 
-if (window.location.hostname === "localhost") {
+/*if (window.location.hostname === "localhost") {
   db.settings({
     host: "localhost:8080",
     ssl: false,
   });
-}
+}*/
