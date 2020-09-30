@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import classes from "./ChatIndividual.module.css";
 import { fetchChatName, fetchChatImage } from "../../data/ChatRepository";
 import { rdb } from "../../data/firebase";
+import ProfileImage from "../../components/profile/ProfileImage";
 
 function ChatIndividual(props) {
   const [member, setMember] = useState({ users: [], uid: [] });

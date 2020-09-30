@@ -10,7 +10,7 @@ export default function ChatScreen(props) {
   const [convo, setConvo] = useState([]);
   const [newText, setNewText] = useState("");
 
-  const myChat = props.me.name;
+  const myChat = props.me.uid;
 
   let ref;
   let sendRef;
@@ -20,7 +20,6 @@ export default function ChatScreen(props) {
   const chatSelect = "Open a conversation";
 
   useEffect(() => {
-    //fix the orderBy value
     if (props.person) {
       ref = rdb.ref("/messages");
       ref.on("value", gotData);
@@ -107,7 +106,7 @@ export default function ChatScreen(props) {
               return (
                 <Message
                   key={i}
-                  myMessage={message.name.name === myChat}
+                  myMessage={message.name.uid === myChat}
                   data={message.message}
                   author={message.name}
                 />
