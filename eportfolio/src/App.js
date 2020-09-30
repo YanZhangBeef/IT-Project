@@ -5,45 +5,27 @@ import AuthRoute from "./data/AuthRoute";
 import { rdb, db, auth } from "./data/firebase";
 
 import Navbar from "./components/navigation/Navbar";
+import Footer from "./components/footer/Footer";
 import ContentPageContainer from "./components/pages/ContentPageContainer";
 import CreateContentPageContainer from "./components/pages/CreateContentPageContainer";
 import ProfilePageContainer from "./components/pages/ProfilePageContainer";
 import SearchPage from "./components/pages/SearchPage";
-import MoreSearchResults from "./components/pages/MoreSearchResults";
+
 import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-import { Provider } from "react-redux";
+
+
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
 import Chat from "./components/pages/Chat";
 import { AuthProvider } from "./data/Auth";
 function App() {
-  // async function startMessage(myId, otherId){
-  //   try{
-  //     const myContent = await db.collection("users").doc(myId).get();
-  //     const myContentData = myContent.data();
-  //     const myChats = myContentData.chats;
-
-  //     const otherContent = await db.collection("users").doc(otherId).get();
-  //     const otherContentData = otherContent.data();
-  //     const otherChats = otherContentData.chats;
-
-  //     const newChatId= myId+otherId;
-
-  //     console.log(newChatId);
-
-  //   }
-  //   catch (e) {
-  //     console.log(e);
-  //   }
-
-  // }
-
   return (
     <React.Fragment>
+
       <AuthProvider>
         <Navbar />
         <Switch>
@@ -75,6 +57,7 @@ function App() {
           <Route exact path="/home" component={Home} />
         </Switch>
       </AuthProvider>
+
     </React.Fragment>
   );
 }

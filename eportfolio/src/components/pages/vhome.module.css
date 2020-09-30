@@ -1,0 +1,44 @@
+.home {
+  background-image: url("./homepage2.png");
+  display: table;
+  position: relative;
+  width: 100%;
+  background-size: cover;
+  height: 38rem;
+}
+
+.homeicons {
+  color: #4785d1;
+  font-size: 5.5rem;
+}
+
+.homebutton {
+  background: #90bbef 71%;
+  border: 3px solid #fc5c39;
+  border-radius: 15px;
+}
+
+.landingtext {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.hometext {
+  font-size: 4rem;
+  color: white;
+  font-weight: 900;
+  margin-bottom: 5rem;
+}
+
+.icontext {
+  font-size: x-large;
+  font-weight: bold;
+  color: #4785d1;
+}
+
+.iconparagraph {
+  font-size: medium;
+
+  text-align: center;
+}

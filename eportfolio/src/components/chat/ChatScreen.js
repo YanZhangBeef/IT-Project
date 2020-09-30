@@ -4,7 +4,7 @@ import Message from "./Message";
 import ChatScreenHeading from "./ChatScreenHeading";
 import SendText from "./SendText";
 import classes from "./ChatScreen.module.css";
-import { rdb, db, auth } from "../../data/firebase";
+import { rdb } from "../../data/firebase";
 
 export default function ChatScreen(props) {
   const [convo, setConvo] = useState([]);

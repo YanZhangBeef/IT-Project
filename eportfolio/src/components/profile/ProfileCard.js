@@ -26,10 +26,6 @@ export default function ProfileCard(props) {
       const myContentData = myContent.data();
       const myChats = myContentData.chats;
 
-      const otherContent = await db.collection("users").doc(otherId).get();
-      const otherContentData = otherContent.data();
-      const othersChat = otherContentData.chats;
-
       const newChatId = myId + otherId;
       const newChatId2 = otherId + myId;
 
