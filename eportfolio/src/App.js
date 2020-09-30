@@ -13,7 +13,9 @@ import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
+import Vhome from "./components/pages/vhome";
 import { Provider } from "react-redux";
+
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
@@ -44,10 +46,6 @@ function App() {
         <Route exact path="/content">
           <ContentPage {...fakeContent} />
         </Route>
-
-        <Route exact path="/">
-          <ProfilePage {...fakeProfile} />
-        </Route>
         <Route exact path="/chat" component={Chat} />
         <Route exact path="/search">
           <SearchPage />
@@ -56,9 +54,8 @@ function App() {
         <Route exact path="/results">
           <MoreSearchResults />
         </Route>
-
         <Route exact path="/login" component={Login} />
-        <Route exact path="/home" component={Home} />
+        <Route path="/" component={Vhome} /> // must be the last element
       </Switch>
       <Footer/>
     </React.Fragment>
