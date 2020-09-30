@@ -47,7 +47,6 @@ function ProjectResults(props) {
             <p>Load more projects</p>{" "}
           </Link>
           <hr className="mt-2"></hr>
-          <hr className="mt-2"></hr>
         </div>
       </div>
     );
