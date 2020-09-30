@@ -8,12 +8,12 @@ import ContentPageContainer from "./components/pages/ContentPageContainer";
 import CreateContentPageContainer from "./components/pages/CreateContentPageContainer";
 import ProfilePageContainer from "./components/pages/ProfilePageContainer";
 import SearchPage from "./components/pages/SearchPage";
-import MoreSearchResults from "./components/pages/MoreSearchResults";
+
 import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-import { Provider } from "react-redux";
+
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
