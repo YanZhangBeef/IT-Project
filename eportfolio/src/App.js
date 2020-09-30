@@ -5,6 +5,7 @@ import AuthRoute from "./data/AuthRoute";
 import { rdb, db, auth } from "./data/firebase";
 
 import Navbar from "./components/navigation/Navbar";
+import Footer from "./components/footer/Footer";
 import ContentPageContainer from "./components/pages/ContentPageContainer";
 import CreateContentPageContainer from "./components/pages/CreateContentPageContainer";
 import ProfilePageContainer from "./components/pages/ProfilePageContainer";
@@ -15,6 +16,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 
+
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
@@ -23,6 +25,7 @@ import { AuthProvider } from "./data/Auth";
 function App() {
   return (
     <React.Fragment>
+
       <AuthProvider>
         <Navbar />
         <Switch>
@@ -54,6 +57,7 @@ function App() {
           <Route exact path="/home" component={Home} />
         </Switch>
       </AuthProvider>
+
     </React.Fragment>
   );
 }
