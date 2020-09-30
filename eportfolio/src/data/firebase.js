@@ -11,11 +11,12 @@ firebase.initializeApp({
 
 // make sure we use the emulator db if on localhost
 export const db = firebase.firestore();
+export const rdb = firebase.database();
+export const auth = firebase.auth;
 export const storage = firebase.storage();
-
-/*if (window.location.hostname === "localhost") {
-  db.settings({
-    host: "localhost:8080",
-    ssl: false,
-  });
-}*/
+// if (window.location.hostname === "localhost") {
+//   db.settings({
+//     host: "localhost:8080",
+//     ssl: false,
+//   });
+// }

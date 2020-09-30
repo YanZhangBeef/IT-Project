@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import ChatIndividual from "./ChatIndividual";
-import ChatScreenHeading from "./ChatScreenHeading";
+import classes from "./SideChatBar.module.css";
 
-function sideChatBar(props) {
+function SideChatBar(props) {
   return (
-    <div>
-      <ChatIndividual name={props.person} getName={props.getName} />
+    <div className={classes.scroll}>
+      <ChatIndividual
+        chatId={props.chatId}
+        getId={props.getId}
+        currUser={props.currUser}
+      />
     </div>
   );
 }
 
-export default sideChatBar;
+export default SideChatBar;

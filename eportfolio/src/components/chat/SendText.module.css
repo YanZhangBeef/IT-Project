@@ -1,13 +1,24 @@
 .textBox {
   width: 60rem;
   position: fixed;
-  bottom: 5px;
+  bottom: 0.2rem;
+  margin: 1rem 1rem;
 }
 
 .textBox Input {
   width: 90%;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.textBox Button {
+  margin-left: 1rem;
+  background-color: white;
+  border: white;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }

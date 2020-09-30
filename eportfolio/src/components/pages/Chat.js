@@ -1,33 +1,75 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchUser, fetchDetails } from "../../data/ChatRepository";
 
 import SideChatBar from "../chat/SideChatBar";
 import ChatScreen from "../chat/ChatScreen";
 import classes from "./Chat.module.css";
 
-import SendText from "../chat/SendText";
 import ChatScreenHeading from "../chat/ChatScreenHeading";
+
 export default function Chat(props) {
   const [selected, setSelected] = useState("");
+  const [user, setUser] = useState({ name: "", uid: "" });
+  const [details, setDetails] = useState({ chats: [], profileImg: "" });
+  const [selectedName, setSelectedName] = useState("");
+  const [selectedImage, setSelectedImage] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media"
+  );
 
-  let people = ["John Smith", "Harry", "Lewis"];
+  //fetches  current user's Id and name
+  // data has the stuff I need. Remember to import the functions from chatRepo
+  useEffect(() => {
+    fetchUser().then((data) => setUser(data));
+  }, [user]);
 
-  const openChatHandler = (name) => {
-    setSelected(name);
+  useEffect(() => {
+    if (user.uid) {
+      fetchDetails(user.uid).then((data) => setDetails(data));
+    }
+  }, [user]);
+
+  const openChatHandler = (id, name, image) => {
+    setSelected(id);
+    setSelectedName(name);
+    setSelectedImage(image);
   };
+
   return (
-    <div>
+    <div className="container.fluid">
       <div className={classes.chat}>
         <div className={classes.sideChatBar}>
-          <ChatScreenHeading name="*User Name*" />
+          {user ? (
+            <ChatScreenHeading
+              name={user.name}
+              profileImg={details.profileImg}
+            />
+          ) : (
+            <p>loading...</p>
+          )}
 
-          {people.map((person) => {
-            return <SideChatBar person={person} getName={openChatHandler} />;
-          })}
+          {details ? (
+            details.chats.map((chatId) => {
+              return (
+                <SideChatBar
+                  key={chatId}
+                  chatId={chatId}
+                  currUser={user.name}
+                  getId={openChatHandler}
+                />
+              );
+            })
+          ) : (
+            <p>No data</p>
+          )}
         </div>
 
         <div className={classes.chatScreen}>
-          <ChatScreen person={selected} />
-          {/* <SendText/> */}
+          <ChatScreen
+            me={user}
+            person={selected}
+            name={selectedName}
+            image={selectedImage}
+          />
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import "./Login.css";
+import styles from "./Login.module.css";
 import { Redirect } from "react-router-dom";
+import { AuthContext } from "../../data/Auth";
 
 const Login = (props) => {
-  const [user, setUser] = useState(null);
   let uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -19,33 +19,25 @@ const Login = (props) => {
     },
   };
 
-  useEffect(() => {
-    const unlisten = firebase.auth().onAuthStateChanged((user) => {
-      user ? setUser(user) : setUser(null);
-      console.log(user);
-    });
-    return () => {
-      unlisten();
-    };
-  }, []);
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to={`/profile/${currentUser.uid}`} />;
+  }
   return (
-    <div className="login-container">
-      {user ? (
-        <Redirect to={"/profile/" + user.uid} />
-      ) : (
-        <div className="login shadow">
-          <div className="login-method">
-            <div className="login-header">
-              <h2>Log In</h2>
-            </div>
-            <StyledFirebaseAuth
-              uiConfig={uiConfig}
-              firebaseAuth={firebase.auth()}
-            />
+    <div className={styles["login-container"]}>
+      <div className={`${styles["login"]} shadow`}>
+        <div className={styles["login-method"]}>
+          <div className={styles["login-header"]}>
+            <h2>Log In</h2>
           </div>
-          <div className="app-icon"></div>
+          <StyledFirebaseAuth
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
         </div>
-      )}
+        <div className={styles["app-icon"]}></div>
+      </div>
     </div>
   );
 };

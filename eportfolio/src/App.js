@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import AuthRoute from "./data/AuthRoute";
 
 import Navbar from "./components/navigation/Navbar";
 import Footer from "./components/footer/Footer";
@@ -20,6 +21,7 @@ import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
 import Chat from "./components/pages/Chat";
+import { AuthProvider } from "./data/Auth";
 
 const test = () => {
   console.log("works");
@@ -28,38 +30,40 @@ const test = () => {
 function App() {
   return (
     <React.Fragment>
-      <Navbar />
+      <AuthProvider>
+        <Navbar />
 
-      <Switch>
-        <Route path="/newContent/:userId/:sectionId">
-          <CreateContentPageContainer />
-        </Route>
-        <Route path="/editContent/:contentId">
-          <ContentPageContainer isEditing={true} />
-        </Route>
-        <Route path="/content/:contentId">
-          <ContentPageContainer />
-        </Route>
-        <Route path="/profile/:userId">
-          <ProfilePageContainer />
-        </Route>
-        <Route exact path="/content">
-          <ContentPage {...fakeContent} />
-        </Route>
-        <Route exact path="/chat" component={Chat} />
-        <Route exact path="/search">
-          <SearchPage />
-        </Route>
+        <Switch>
+          <Route path="/newContent/:userId/:sectionId">
+            <CreateContentPageContainer />
+          </Route>
+          <Route path="/editContent/:contentId">
+            <ContentPageContainer isEditing={true} />
+          </Route>
+          <Route path="/content/:contentId">
+            <ContentPageContainer />
+          </Route>
+          <Route path="/profile/:userId">
+            <ProfilePageContainer />
+          </Route>
+          <Route exact path="/content">
+            <ContentPage {...fakeContent} />
+          </Route>
+          <AuthRoute exact path="/chat" component={Chat} />
+          <Route exact path="/search">
+            <SearchPage />
+          </Route>
 
-        <Route exact path="/results">
-          <MoreSearchResults />
-        </Route>
-        <Route exact path="/login" component={Login} />
-        <Route path="/">
-          <Vhome />
-          <Footer />
-        </Route>
-      </Switch>
+          <Route exact path="/results">
+            <MoreSearchResults />
+          </Route>
+          <Route exact path="/login" component={Login} />
+          <Route path="/">
+            <Vhome />
+            <Footer />
+          </Route>
+        </Switch>
+      </AuthProvider>
     </React.Fragment>
   );
 }

@@ -5,40 +5,41 @@
 .mine {
   justify-content: flex-end;
   display: flex;
-  font-size: 14px;
-  margin-right: 10%;
+  font-size: 1rem;
 }
 .other {
   margin-left: 10%;
 }
 
 .other .bubbleContainer {
-  font-size: 14px;
+  font-size: 1rem;
   display: flex;
   justify-content: flex-start;
-  margin: 2%;
+  /* margin: 2%; */
 }
 
 .other .bubbleContainer .bubble {
-  margin: 1px 0px;
   background: #f4f4f8;
-  padding: 10px 15px;
-  border-radius: 20px;
-  max-width: 75%;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
+  max-width: 40rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .mine .bubbleContainer .bubble {
-  margin: 2% 0%;
+  justify-content: flex-end;
+  display: flex;
+
   background: #ceeaff;
-  padding: 10px 15px;
-  border-radius: 20px;
-  max-width: 75%;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
+  /* border-radius: 20px; */
+  max-width: 40rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
