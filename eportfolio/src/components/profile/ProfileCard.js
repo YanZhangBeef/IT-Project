@@ -34,7 +34,7 @@ export default function ProfileCard(props) {
       const newChatId2 = otherId + myId;
 
       //if any form not already present
-      if (!myChats.includes(newChatId) || !myChats.includes(newChatId2)) {
+      if (!myChats.includes(newChatId) && !myChats.includes(newChatId2)) {
         //updating chats array in firestory
         db.collection("users")
           .doc(myId)
