@@ -33,7 +33,7 @@ export async function fetchProfile(userId) {
     );
     console.log("sections ", sections);
 
-    return Object.assign({}, user.data(), { sections: sections });
+    return Object.assign({}, user.data(), { sections: sections, userId });
   } catch (e) {
     console.log(e);
   }

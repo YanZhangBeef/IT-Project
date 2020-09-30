@@ -56,7 +56,8 @@ const userTemplate= {
     profileImg: "",
     tagline: "University of Melbourne",
     about: "I'm a student at the university of melbourne",
-    sections: []
+    sections: [],
+    chats: []
 }
 
 const sectionTemplate = {

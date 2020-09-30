@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ContentPage from "./ContentPage";
 import EditContentPage from "./EditContentPage";
 import { useHistory, useParams } from "react-router-dom";
@@ -8,9 +8,11 @@ import {
   updateContent,
   uploadThumbnail,
 } from "../../data/ProfileRepository";
+import { AuthContext } from "../../data/Auth";
 
 export default function ContentPageContainer(props) {
   const [contentData, setContentData] = useState({ artefacts: [] });
+  const { currentUser } = useContext(AuthContext);
 
   const { contentId } = useParams();
   const history = useHistory();
@@ -52,8 +54,8 @@ export default function ContentPageContainer(props) {
     />
   ) : (
     <ContentPage
+      isEditable={currentUser?.uid === contentData?.userId}
       {...contentData}
-      isEditable={true}
       handleUpload={handleUpload}
     />
   );

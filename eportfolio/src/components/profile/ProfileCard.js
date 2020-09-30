@@ -76,7 +76,7 @@ export default function ProfileCard(props) {
           />
         </div>
 
-        {props.userId ? (
+        {currentUser != null && currentUser?.uid !== props.userId && (
           <div className={`${styles["profile-message"]} ml-auto`}>
             <Link to="/chat">
               <button
@@ -91,7 +91,7 @@ export default function ProfileCard(props) {
               </button>
             </Link>
           </div>
-        ) : null}
+        )}
 
         {props.showViewProfileBtn && (
           <div className={`${styles["profile-message"]} ml-2`}>

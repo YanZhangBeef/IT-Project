@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ProfilePage from "./ProfilePage";
 import { useHistory, useParams } from "react-router-dom";
+import { AuthContext } from "../../data/Auth";
 
 import {
   createContent,
@@ -12,12 +13,12 @@ import {
 
 export default function ProfilePageContainer(props) {
   const [profileData, setProfileData] = useState({ sections: [] });
+  const { currentUser } = useContext(AuthContext);
 
   const { userId } = useParams();
   const history = useHistory();
 
   useEffect(() => {
-    console.log("fetching " + userId);
     fetchProfile(userId).then((data) => setProfileData(data));
   }, [userId]);
 
@@ -42,7 +43,7 @@ export default function ProfilePageContainer(props) {
   return (
     <ProfilePage
       {...profileData}
-      isEditable={true}
+      isEditable={currentUser?.uid === userId}
       createNewContent={createNewContent}
       handleUpload={handleUpload}
       updateProfile={(data) => {
