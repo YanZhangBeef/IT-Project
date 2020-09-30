@@ -14,14 +14,13 @@ function PeopleResults(props) {
   });
 
   useEffect(() => {
-    setUserData({ repos: null });
     userSearch(props.query).then((res) => {
       console.log(res);
       setUserData({ repos: res });
     });
   }, [props.query]);
 
-  if (userData.repos == null) {
+  if (userData.repos === null) {
     return <div></div>;
   } else if (userData.repos.length === 0) {
     return (

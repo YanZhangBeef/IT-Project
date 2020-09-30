@@ -10,14 +10,12 @@ const moreStyle = {
 
 function ProjectResults(props) {
   const [sectionData, setSectionData] = useState({
-    loading: false,
     repos: null,
   });
 
   useEffect(() => {
-    setSectionData({ loading: true });
     sectionSearch(props.query).then((res) => {
-      setSectionData({ loading: false, repos: res });
+      setSectionData({ repos: res });
     });
   }, [props.query]);
 
