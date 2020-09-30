@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import AuthRoute from "./data/AuthRoute";
+import { rdb, db, auth } from "./data/firebase";
 
 import Navbar from "./components/navigation/Navbar";
 import ContentPageContainer from "./components/pages/ContentPageContainer";
@@ -20,6 +21,27 @@ import { fakeProfile, fakeContent } from "./TestData";
 import Chat from "./components/pages/Chat";
 import { AuthProvider } from "./data/Auth";
 function App() {
+  // async function startMessage(myId, otherId){
+  //   try{
+  //     const myContent = await db.collection("users").doc(myId).get();
+  //     const myContentData = myContent.data();
+  //     const myChats = myContentData.chats;
+
+  //     const otherContent = await db.collection("users").doc(otherId).get();
+  //     const otherContentData = otherContent.data();
+  //     const otherChats = otherContentData.chats;
+
+  //     const newChatId= myId+otherId;
+
+  //     console.log(newChatId);
+
+  //   }
+  //   catch (e) {
+  //     console.log(e);
+  //   }
+
+  // }
+
   return (
     <React.Fragment>
       <AuthProvider>

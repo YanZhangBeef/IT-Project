@@ -4,7 +4,7 @@ import Message from "./Message";
 import ChatScreenHeading from "./ChatScreenHeading";
 import SendText from "./SendText";
 import classes from "./ChatScreen.module.css";
-import { rdb } from "../../data/firebase";
+import { rdb, db, auth } from "../../data/firebase";
 
 export default function ChatScreen(props) {
   const [convo, setConvo] = useState([]);
@@ -22,7 +22,7 @@ export default function ChatScreen(props) {
   useEffect(() => {
     //fix the orderBy value
     if (props.person) {
-      ref = rdb.ref("/messages/" + props.person);
+      ref = rdb.ref("/messages");
       ref.on("value", gotData);
     }
     return () => {};
@@ -37,9 +37,15 @@ export default function ChatScreen(props) {
   function gotData(data) {
     if (props.person) {
       allChat = data.val();
-      temp = allChat;
-      let newStuff = Object.values(temp);
-      setConvo(newStuff);
+      console.log(allChat[props.person]);
+      if (allChat[props.person]) {
+        temp = allChat[props.person];
+        let newStuff = Object.values(temp);
+
+        setConvo(newStuff);
+      } else {
+        setConvo([]);
+      }
     }
   }
 
@@ -82,6 +88,13 @@ export default function ChatScreen(props) {
     }
   };
 
+  const displayMessages = () => {
+    if (convo.length > 0) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div className="container.fluid">
       <ChatScreenHeading
@@ -89,16 +102,18 @@ export default function ChatScreen(props) {
         profileImg={props.image}
       />
       <div className={classes.scroll} id="chatList">
-        {convo.map((message, i) => {
-          return (
-            <Message
-              key={i}
-              myMessage={message.name.name === myChat}
-              data={message.message}
-              author={message.name}
-            />
-          );
-        })}
+        {displayMessages()
+          ? convo.map((message, i) => {
+              return (
+                <Message
+                  key={i}
+                  myMessage={message.name.name === myChat}
+                  data={message.message}
+                  author={message.name}
+                />
+              );
+            })
+          : null}
       </div>
 
       <div className={classes.textBox}>

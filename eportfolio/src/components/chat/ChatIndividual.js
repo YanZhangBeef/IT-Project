@@ -10,6 +10,7 @@ function ChatIndividual(props) {
 
   useEffect(() => {
     fetchChatName(props.currUser, props.chatId).then((data) => {
+      console.log(data);
       setMember(data);
     });
   }, [props.chatId, props.currUser]);
