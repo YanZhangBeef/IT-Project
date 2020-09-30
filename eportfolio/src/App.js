@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/navigation/Navbar";
+import Footer from "./components/footer/Footer";
 import ContentPageContainer from "./components/pages/ContentPageContainer";
 import CreateContentPageContainer from "./components/pages/CreateContentPageContainer";
 import ProfilePageContainer from "./components/pages/ProfilePageContainer";
@@ -59,6 +60,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/home" component={Home} />
       </Switch>
+      <Footer/>
     </React.Fragment>
   );
 }
