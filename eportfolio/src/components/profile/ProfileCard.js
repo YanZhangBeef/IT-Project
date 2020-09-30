@@ -30,6 +30,7 @@ export default function ProfileCard(props) {
       const newChatId2 = otherId + myId;
 
       //if any form not already present
+
       if (!myChats.includes(newChatId) && !myChats.includes(newChatId2)) {
         //updating chats array in firestory
         db.collection("users")
@@ -75,19 +76,22 @@ export default function ProfileCard(props) {
           />
         </div>
 
-        <div className={`${styles["profile-message"]} ml-auto`}>
-          <Link to="/chat">
-            <button
-              onClick={() => {
-                // console.log(props.userId)
-                startMessage(currentUser.uid, props.userId);
-              }}
-              className="btn btn-primary"
-            >
-              Message
-            </button>
-          </Link>
-        </div>
+        {props.userId ? (
+          <div className={`${styles["profile-message"]} ml-auto`}>
+            <Link to="/chat">
+              <button
+                onClick={() => {
+                  startMessage(currentUser.uid, props.userId);
+                  // console.log("currentUSer"+currentUser.uid);
+                  // console.log("clickeduser"+props.userId);
+                }}
+                className="btn btn-primary"
+              >
+                Message
+              </button>
+            </Link>
+          </div>
+        ) : null}
 
         {props.showViewProfileBtn && (
           <div className={`${styles["profile-message"]} ml-2`}>
