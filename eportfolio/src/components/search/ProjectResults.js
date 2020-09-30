@@ -22,10 +22,11 @@ function ProjectResults(props) {
   }, [props.query]);
 
   if (sectionData.repos == null) {
-    /* no profile found yet */
+    return <div></div>;
+  } else if (sectionData.repos.length === 0) {
     return (
       <div>
-        <h1>No profile found</h1>
+        <h1>No project found</h1>
       </div>
     );
   } else {

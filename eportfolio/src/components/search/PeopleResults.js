@@ -10,25 +10,26 @@ const moreStyle = {
 
 function PeopleResults(props) {
   const [userData, setUserData] = useState({
-    loading: false,
     repos: null,
   });
 
   useEffect(() => {
-    setUserData({ loading: true });
+    setUserData({ repos: null });
     userSearch(props.query).then((res) => {
-      setUserData({ loading: false, repos: res });
+      console.log(res);
+      setUserData({ repos: res });
     });
   }, [props.query]);
 
-  if (userData.repos == null || props.query === "") {
+  if (userData.repos == null) {
+    return <div></div>;
+  } else if (userData.repos.length === 0) {
     return (
       <div>
         <h1>No profile found</h1>
       </div>
     );
   } else {
-    console.log(userData.repos);
     return (
       <div>
         <div>
