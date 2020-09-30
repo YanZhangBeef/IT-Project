@@ -58,12 +58,14 @@ function Navbar(props) {
         <div className="d-flex align-items-center">
           {currentUser != null && (
             <div className={styles.circle}>
-              <Link to="/chat">
-                <FontAwesomeIcon
-                  icon={faEnvelope}
-                  className={`${styles.mailIcon}`}
-                />
-              </Link>
+              <div className="navbar-brand">
+                <Link to="/chat">
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className={`${styles.mailIcon}`}
+                  />
+                </Link>
+              </div>
             </div>
           )}
 
