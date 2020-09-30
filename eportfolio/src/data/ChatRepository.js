@@ -17,7 +17,6 @@ export async function fetchUser() {
   try {
     const uid = auth().currentUser.uid;
     const name = auth().currentUser.displayName;
-    console.log("chatrepo-" + uid);
 
     return Object.assign({}, { uid: uid, name: name });
   } catch (e) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import AuthRoute from "./data/AuthRoute";
+import { rdb, db, auth } from "./data/firebase";
 
 import Navbar from "./components/navigation/Navbar";
 import ContentPageContainer from "./components/pages/ContentPageContainer";
@@ -15,68 +16,65 @@ import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import { Provider } from "react-redux";
 import "./data/firebase";
-import { auth } from "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
 import Chat from "./components/pages/Chat";
-
-const test = () => {
-  console.log("works");
-};
-
+import { AuthProvider } from "./data/Auth";
 function App() {
-  const [user, setUser] = useState(null);
+  // async function startMessage(myId, otherId){
+  //   try{
+  //     const myContent = await db.collection("users").doc(myId).get();
+  //     const myContentData = myContent.data();
+  //     const myChats = myContentData.chats;
 
-  useEffect(() => {
-    let user = auth().currentUser;
-    console.log("user-" + user);
+  //     const otherContent = await db.collection("users").doc(otherId).get();
+  //     const otherContentData = otherContent.data();
+  //     const otherChats = otherContentData.chats;
 
-    //const unlisten = auth().onAuthStateChanged((user) => {
-    user ? setUser(user) : setUser(null);
-    // console.log("authenticated-"+authenticated);
-    //});
-    // return () => {
-    //   unlisten();
-    // };
-  }, [user]);
+  //     const newChatId= myId+otherId;
+
+  //     console.log(newChatId);
+
+  //   }
+  //   catch (e) {
+  //     console.log(e);
+  //   }
+
+  // }
+
   return (
     <React.Fragment>
-      <Navbar />
-      <Switch>
-        <Route exact path="/newContent/:userId/:sectionId">
-          <CreateContentPageContainer />
-        </Route>
-        <Route exact path="/editContent/:contentId">
-          <ContentPageContainer isEditing={true} />
-        </Route>
-        <Route exact path="/content/:contentId">
-          <ContentPageContainer />
-        </Route>
-        <Route exact path="/profile/:userId">
-          <ProfilePageContainer />
-        </Route>
-        <Route exact path="/content">
-          <ContentPage {...fakeContent} />
-        </Route>
+      <AuthProvider>
+        <Navbar />
+        <Switch>
+          <Route path="/newContent/:userId/:sectionId">
+            <CreateContentPageContainer />
+          </Route>
+          <Route path="/editContent/:contentId">
+            <ContentPageContainer isEditing={true} />
+          </Route>
+          <Route path="/content/:contentId">
+            <ContentPageContainer />
+          </Route>
+          <Route path="/profile/:userId">
+            <ProfilePageContainer />
+          </Route>
+          <Route exact path="/content">
+            <ContentPage {...fakeContent} />
+          </Route>
 
-        <Route exact path="/">
-          <ProfilePage {...fakeProfile} />
-        </Route>
+          <Route exact path="/">
+            <ProfilePage {...fakeProfile} />
+          </Route>
+          <AuthRoute exact path="/chat" component={Chat} />
+          <Route path="/search">
+            <SearchPage />
+          </Route>
 
-        <AuthRoute exact path="/chat" authenticated={user} component={Chat} />
-        {/* <Route path="/search"> */}
-
-        <Route exact path="/search">
-          <SearchPage />
-        </Route>
-
-        <Route exact path="/results">
-          <MoreSearchResults />
-        </Route>
-
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/home" component={Home} />
-      </Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/home" component={Home} />
+        </Switch>
+      </AuthProvider>
     </React.Fragment>
   );
 }
