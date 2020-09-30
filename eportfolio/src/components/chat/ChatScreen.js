@@ -20,7 +20,6 @@ export default function ChatScreen(props) {
   const chatSelect = "Open a conversation";
 
   useEffect(() => {
-    //fix the orderBy value
     if (props.person) {
       ref = rdb.ref("/messages");
       ref.on("value", gotData);
