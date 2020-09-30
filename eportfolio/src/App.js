@@ -11,7 +11,7 @@ import ContentPage from "./components/pages/ContentPage";
 import ProfilePage from "./components/pages/ProfilePage";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
-import Vhome from "./components/pages/vhome"
+import Vhome from "./components/pages/vhome";
 import "./data/firebase";
 
 import { fakeProfile, fakeContent } from "./TestData";
@@ -38,17 +38,12 @@ function App() {
         <Route exact path="/content">
           <ContentPage {...fakeContent} />
         </Route>
-
-        <Route exact path="/">
-          <ProfilePage {...fakeProfile} />
-        </Route>
         <Route exact path="/chat" component={Chat} />
         <Route path="/search">
           <SearchPage {...fakeProfile} />
         </Route>
-        <Route exact path="/vhome" component={Vhome} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/home" component={Home} />
+        <Route path="/" component={Vhome} /> // must be the last element
       </Switch>
     </React.Fragment>
   );
