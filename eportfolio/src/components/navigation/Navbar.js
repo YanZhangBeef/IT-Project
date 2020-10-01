@@ -2,7 +2,7 @@ import React, { useContext, createRef } from "react";
 import firebase from "firebase/app";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Navbar.module.css";
-import { withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import {
   faEnvelope,
   faUser,
@@ -22,6 +22,7 @@ function Navbar(props) {
 
   const logout = () => {
     firebase.auth().signOut();
+    props.history.push("/");
   };
 
   const { currentUser } = useContext(AuthContext);
