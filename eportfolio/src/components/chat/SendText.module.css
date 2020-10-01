@@ -5,12 +5,16 @@
   margin: 1rem 1rem;
 }
 
-.textBox Input {
+.textBox input {
   width: 90%;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  padding: 0.6rem;
+  font-size: 1.2rem;
+  border-radius: 3px;
+  background: #efefef;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .textBox Button {
@@ -21,4 +25,6 @@
   border-bottom-left-radius: 1rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  color: #3578c9;
+  font-size: 1.2rem;
 }

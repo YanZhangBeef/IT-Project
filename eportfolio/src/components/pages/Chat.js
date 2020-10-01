@@ -16,9 +16,7 @@ export default function Chat(props) {
       "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media",
   });
   const [selectedName, setSelectedName] = useState("");
-  const [selectedImage, setSelectedImage] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media"
-  );
+  const [selectedImage, setSelectedImage] = useState("");
 
   //fetches  current user's Id and name
   // data has the stuff I need. Remember to import the functions from chatRepo

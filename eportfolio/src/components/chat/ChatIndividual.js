@@ -29,9 +29,9 @@ function ChatIndividual(props) {
   });
   return (
     <div className={classes.individualChat}>
-      <img className={classes.individualProfilePic} src={image} alt="Loading" />
+      <ProfileImage thumbnailUrl={image} height="50px" width="50px" />
       <div
-        className={classes.individualChatInfo}
+        className={classes.individualChatInfo + " ml-3"}
         onClick={() => {
           props.getId(props.chatId, member.users, image);
         }}
