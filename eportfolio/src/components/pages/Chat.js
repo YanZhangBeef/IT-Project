@@ -10,7 +10,11 @@ import ChatScreenHeading from "../chat/ChatScreenHeading";
 export default function Chat(props) {
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ name: "", uid: "" });
-  const [details, setDetails] = useState({ chats: [], profileImg: "" });
+  const [details, setDetails] = useState({
+    chats: [],
+    profileImg:
+      "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media",
+  });
   const [selectedName, setSelectedName] = useState("");
   const [selectedImage, setSelectedImage] = useState(
     "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media"
