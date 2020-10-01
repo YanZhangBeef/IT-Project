@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import { useState, useEffect } from "react";
 import Message from "./Message";
@@ -31,7 +32,7 @@ export default function ChatScreen(props) {
     scrollToEnd();
 
     return () => {};
-  }, [convo, scrollToEnd]);
+  }, [convo]);
 
   function gotData(data) {
     if (props.person) {
