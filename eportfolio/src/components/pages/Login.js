@@ -21,22 +21,27 @@ const Login = (props) => {
 
   const { currentUser } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to={`/profile/${currentUser.uid}`} />;
-  }
   return (
-    <div className={styles["login-container"]}>
-      <div className={`${styles["login"]} shadow`}>
-        <div className={styles["login-method"]}>
-          <div className={styles["login-header"]}>
-            <h2>Log In</h2>
+    <div className={styles.background}>
+      <div className={styles["login-container"]}>
+        <div className={`${styles["login"]} shadow`}>
+          <div className={styles["login-method"]}>
+            <div className={styles["login-header"]}>
+              {currentUser ? <h2> Login Success</h2> : <h2>Log In</h2>}
+              {currentUser ? (
+                <p className="my-5">
+                  Welcome {currentUser.displayName}! You're all set to get
+                  started.
+                </p>
+              ) : (
+                <StyledFirebaseAuth
+                  uiConfig={uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />
+              )}
+            </div>
           </div>
-          <StyledFirebaseAuth
-            uiConfig={uiConfig}
-            firebaseAuth={firebase.auth()}
-          />
         </div>
-        <div className={styles["app-icon"]}></div>
       </div>
     </div>
   );

@@ -2,11 +2,42 @@
   margin: auto;
   width: 70%;
   height: 100%;
+  opacity: 1;
+  padding-top: 10%;
+}
+
+.background {
+  position: absolute;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.background::after {
+  content: "";
+  background: url("./homepage2.png");
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  filter: blur(4px);
+  transform: scale(1.02);
 }
 
 .login {
-  display: flex;
-  margin: 20%;
+  background: white;
+  color: rgb(17, 44, 99) !important;
+  border-radius: 3px;
+
+  width: 20rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 2rem;
+  margin-bottom: 0;
 }
 
 .login-method {
