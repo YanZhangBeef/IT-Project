@@ -1,17 +1,17 @@
 import React from "react";
+import ProfileImage from "../profile/ProfileImage";
 import classes from "./ChatScreenHeading.module.css";
 
 export default function ChatScreenHeading(props) {
-  let usrImg =
-    "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media";
-  if (props.profileImg) {
-    usrImg = props.profileImg;
-  }
   return (
     <div>
       <div className={classes.heading}>
-        <img className={classes.profilePic} src={usrImg} alt="Loading" />
-        <h3 className={classes.name}>{props.name}</h3>
+        <ProfileImage
+          thumbnailUrl={props.profileImg}
+          height="70px"
+          width="70px"
+        />
+        <h3 className={classes.name + " ml-3"}>{props.name}</h3>
       </div>
       <hr className={classes.hrSize} />
     </div>

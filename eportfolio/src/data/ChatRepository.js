@@ -52,12 +52,12 @@ export async function fetchChatImage(uids) {
       if (profileImg) {
         return profileImg;
       } else {
-        return "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media";
+        return "";
       }
     } catch (e) {
       console.log(e);
     }
   } else {
-    return "https://firebasestorage.googleapis.com/v0/b/eportfolio-5head.appspot.com/o/no-img.png?alt=media";
+    return "";
   }
 }
