@@ -67,7 +67,7 @@ export default function ProfileCard(props) {
             thumbnailUrl={props.profilePictureUrl}
           />
         </div>
-        <div className={`${styles["profile-content"]}`}>
+        <div className={`${styles["profile-content"]} mr-auto`}>
           <h1 className={styles["profile-name"]}>{props.displayName}</h1>
           <EditableTextField
             isEditable={props.isEditable}
@@ -77,7 +77,7 @@ export default function ProfileCard(props) {
         </div>
 
         {currentUser != null && currentUser?.uid !== props.userId && (
-          <div className={`${styles["profile-message"]} ml-auto`}>
+          <div className={`${styles["profile-message"]}`}>
             <Link to="/chat">
               <button
                 onClick={() => {

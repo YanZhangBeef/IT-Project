@@ -34,7 +34,7 @@ function ProjectResults(props) {
           {sectionData.repos
             .filter((section, idx) => idx < 3)
             .map(({ objectID, ...section }) => (
-              <SectionCard key={objectID} {...section} />
+              <SectionCard key={objectID} contentId={objectID} {...section} />
             ))}
         </div>
         <div className="mt-4" style={moreStyle}>

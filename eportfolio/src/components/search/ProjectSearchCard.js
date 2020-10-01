@@ -57,11 +57,9 @@ export default function ProjectSearchCard(props) {
             </div>
 
             <div className={classes.sectionButtons}>
-              <Link to={`/content/${props.key}`}>
-                <button className="btn btn-primary">More</button>
+              <Link to={`/content/${props.contentId}`}>
+                <button className="btn btn-primary">View project</button>
               </Link>
-              <span className="mx-1"></span>
-              <button className="btn btn-primary">Message</button>
             </div>
           </div>
         </div>
