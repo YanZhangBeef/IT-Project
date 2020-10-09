@@ -3,7 +3,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import styles from "./Login.module.css";
-import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../data/Auth";
 
 const Login = (props) => {
@@ -13,6 +12,7 @@ const Login = (props) => {
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
       signInSuccessWithAuthResult: () => false,
