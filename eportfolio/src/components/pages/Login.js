@@ -6,7 +6,10 @@ import styles from "./Login.module.css";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../data/Auth";
 
+
+
 const Login = (props) => {
+  
   let uiConfig = {
     signInFlow: "popup",
     signInOptions: [
@@ -27,17 +30,15 @@ const Login = (props) => {
         <div className={`${styles["login"]} shadow`}>
           <div className={styles["login-method"]}>
             <div className={styles["login-header"]}>
-              {currentUser ? <h2> Login Success</h2> : <h2>Log In</h2>}
-              {currentUser ? (
-                <p className="my-5">
-                  Welcome {currentUser.displayName}! You're all set to get
-                  started.
-                </p>
-              ) : (
+
+              {currentUser ? myFunction(currentUser) : (
+                <div>
+                   <h2>Log In</h2>
                 <StyledFirebaseAuth
                   uiConfig={uiConfig}
                   firebaseAuth={firebase.auth()}
                 />
+                </div>
               )}
             </div>
           </div>
@@ -47,3 +48,7 @@ const Login = (props) => {
   );
 };
 export default Login;
+function myFunction(currentUser) {
+
+  window.location.assign("../profile/"+ currentUser.uid);
+}
