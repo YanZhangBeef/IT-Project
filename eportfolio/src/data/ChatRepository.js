@@ -47,7 +47,7 @@ export async function fetchChatImage(uids) {
     try {
       const content = await db.collection("users").doc(uids[0]).get();
       const contentData = content.data();
-      const profileImg = contentData.profileImg;
+      const profileImg = contentData.profilePictureUrl;
 
       if (profileImg) {
         return profileImg;
