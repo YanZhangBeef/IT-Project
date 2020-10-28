@@ -10,8 +10,14 @@ const admin = require("firebase-admin");
 //   response.send("Hello from Firebase!");
 // });
 
-exports.initNewUser = functions.auth.user().onCreate((user) => {
-    database.initializeUser(user.uid, user.displayName);
+exports.initNewUser = functions.auth.user().onCreate((event) => {
+    const data=event.data
+    admin.auth().getUser(data.uid).then(userRecord=>{
+      database.initializeUser(userRecord.uid, userRecord.displayName);
+      return
+    }).catch(err=>{
+      console.log(err)
+    })
 })
 
 
