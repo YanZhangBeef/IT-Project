@@ -1,23 +1,23 @@
 import React from "react";
-import { useState } from "react";
 import classes from "./SendText.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import {
+  // faPaperclip,
+  // faVideo,
+  // faComment,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 export default function SendText(props) {
-  const [textWritten, settextWritten] = useState(false);
-  let text = "";
+  let text = null;
 
   const newText = (event) => {
     text = event.target.value;
-    settextWritten(true);
     props.getText(text);
   };
 
   const submitHandler = (event) => {
     props.sendText();
     resetText();
-    settextWritten(false);
-
     event.preventDefault();
   };
 
@@ -41,11 +41,9 @@ export default function SendText(props) {
               newText(event);
             }}
           />
-
           <button
             className={classes.sendButton}
             type="submit"
-            disabled={!textWritten}
             onSubmit={(event) => {
               submitHandler(event);
             }}

@@ -28,14 +28,14 @@ function ChatIndividual(props) {
     });
   });
   return (
-    <div
-      className={classes.individualChat}
-      onClick={() => {
-        props.getId(props.chatId, member.users, image);
-      }}
-    >
+    <div className={classes.individualChat}>
       <ProfileImage thumbnailUrl={image} height="50px" width="50px" />
-      <div className={classes.individualChatInfo + " ml-3"}>
+      <div
+        className={classes.individualChatInfo + " ml-3"}
+        onClick={() => {
+          props.getId(props.chatId, member.users, image);
+        }}
+      >
         <h2 className={classes.individualName}>
           {member.users ? member.users.join() : "loading"}
         </h2>
